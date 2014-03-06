@@ -1,0 +1,144 @@
+
+	<div id="mainVideoWrap" style="">
+		<div id="mainVideoCont" >
+	  <div id="mainVideoContText"> 
+	    <h2>Related Videos</h2>
+	    <div id="thumb-stats 1" style="width:240px" >
+	      <% Video.where(:category=> @video.category).each do |video|%>
+		<% if video.have_same_tags_as? @video %>
+		  <div id="liked-desc" style="float:right; width:110px;">
+		    <%=link_to video.title, video%> 
+		  </div>
+		  <div class="video-user-small" url="<%=video.video_link%>" style="margin-bottom:5px;width:110px;" >
+		    <%=link_to "", video%> 
+		  </div>
+		  <div class='clear'></div>
+		<% end %>
+	      <%end%>
+	    </div> 
+	  </div>
+	</div>
+	
+	<div id="header-desc" id="lft" style="width:69%;">
+		     <h3><%= @video.title %></h3>
+	<div id="rgt">
+	  <div class="votera" style="float:right;">
+	    <% if user_signed_in? %>
+	      <% unless @video.was_vouted_by?(current_user) %>
+		<%= link_to image_tag('like.png', class: 'vide-like', :style=> "text-align:left; width:20px").html_safe, vote_video_path(@video,type: "up"), method: :post, remote: true , :class => "voter voter-up" %>
+		<%= link_to  image_tag('d_like.png', class: 'vide-like', :style=> 'text-align:right; width:20px'), vote_video_path(@video,type: "down"), method: :post, remote: true , :class => "voter" %>
+	      <% end %>
+	      <% if @video.how_was_vouted_by current_user %>
+		<% l_img = ((@video.how_was_vouted_by (current_user)) == "positive") ? "like.png" : 'd_like.png' %>
+		<%= image_tag l_img, class: 'how-was-liked',:style=> 'text-align:right; width:20px' %>
+	      <% end %>
+	    <% end %>
+	    <span id='vote-value' class='votes btn '><%= pluralize @video.reputation_for(:votes).to_i, "vote" %></span>
+	  </div>
+	  <div id="rgt" class="btn btn-info"><%= link_to "Request Training", @video.user, id: "new_link", :style=>"color:black;" %></div>
+	  <div id="rgt" class="btn btn-warning"><%=link_to "Flag", inappropriate_video_path(@video), :style=> "color:black;"%></div>
+	  <% if user_signed_in? %>
+	    <% if @video.been_liked_by? current_user%>
+	      <%= link_to current_user.this_video_like(@video.id), method: :delete, id: 'delete_like' do %>
+		<div id='rgt' class='btn btn-info'>
+		  <%= image_tag '200ok.png', size: '20x20' %> 
+		</div>
+	      <% end %> 
+	    <% else %>
+	      <a href='#' id='new_like_button'>
+		<div id='rgt' class='btn btn-info'>
+		  Like
+		  <%= simple_form_for(@like = Like.new) do |f| %>
+		    <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+		    <%= f.input :video_id, as: :hidden, input_html: {value: @video.id} %>
+		  <% end %>
+		</div>
+	      </a>
+	    <% end %>
+	  <% end %>
+	</div>
+	
+		
+	
+	  </div>
+		     <div id="vidProfile">
+		      <% image = get_image @video.user%>
+		      <%= image_tag image, :style=> "background:#555;max-height:50px;float:left;"%>
+		    </div>
+		    <div id="vidPoints lft">
+			<li>Activity Points:<b> 2</b></li>
+			<li>Pro Points:<b> 2</b></li>
+		    </div>
+	        <% if @video.category !='Lesson' %>
+			<%= raw(@embed_code) %>
+		<% else %>
+			<!--#lesson video-->
+			<!-- the player -->
+			<div class="flowplayer" data-swf="flowplayer.swf" data-ratio="0.4167">
+			   <video>
+			      <source type="video/mp4" src="<%= @video.lesson_upload %>">
+			   </video>
+			</div>
+			
+		<% end %>
+	      <div style="height:20px;">&nbsp</div>
+	      <div id='vid-info-s' class='row-fluid' style="background:#ccc; width:640px; height:auto;">
+		<div class='span6' id='video-description-span'>
+		  <div class='page-header'>
+		    <h5>Video Description</h5>
+		  </div>
+		  <% if @video.description %>
+		    <p><%= @video.description %></p>
+		  <% else %>
+		    <p class='a-little-hint'>No description added...</p>
+		  <% end %>
+		</div>
+		<div class='span6' id="rgt video-attributes-span"> 
+		  <div id="statbox" style="width:155px;float:right;">   
+		    <ul id="stats-top"> 
+		      <li class="views" style="float:left;width:40px; list-style-type:none;"><%=@video.impressionist_count%></li>
+		      <li class="views" style="float:left;width:65px; list-style-type:none;"><%=@video.comments.count%></li>
+		      <li class="views" style="float:left;width:40px;list-style-type:none;"><%=@video.reputation_for(:votes).to_i%></li>
+		    </ul>
+		    <ul id="stats-bot"> 
+		      <li class="views" style="float:left;width:40px; list-style-type:none;">VIEWS</li>
+		      <li class="views" style="float:left;width:65px; list-style-type:none;">COMMENTS</li>
+		      <li class="views" style="float:left;width:40px;list-style-type:none;">VOTES</li>
+		    </ul>
+		  </div>
+		  <p id="lft"> 
+		    <span id="rgt">
+		      <%@video.tags.limit(4).each do |tag|%>
+			<%= link_to tag, videos_path(tag: tag.name), :id=>"tag-"%>
+		      <%end%>
+		    <span>
+		  </p>
+		  <div class='clear'></div>
+		
+		  <div class="social">
+		    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+		    <a class="addthis_button_preferred_1"></a>
+		    <a class="addthis_button_preferred_2"></a>
+		    <a class="addthis_button_preferred_3"></a>
+		    <a class="addthis_button_compact"></a>
+		  </div>
+		  <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+		  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-500880a75781d23d"></script>
+		</div>
+	      </div> <!--end <div style="background:#ccc; width:640px; height:100px;">-->
+	      <% if is_signed_in_this? @video.user %>
+		<div id='show-vid-controle-btns'>
+		  <div class='btn-group'>
+		    <%= link_to 'Edit', edit_video_path(@video), class: 'btn' %>
+		    <%= link_to 'Delete', @video, method: :delete, :confirm => 'Are you sure?', class: 'btn btn-danger' %>
+		  </div>      
+		</div>
+	      <% end %>
+	    </div>
+	  <br>  
+	</div>
+	
+	
+	
+
+

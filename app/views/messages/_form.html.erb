@@ -1,0 +1,10 @@
+<br/>
+<br/>
+<%= simple_form_for :message, url: [:reply, conversation] do |f| %>
+  <%= f.input :subject,:as=> :hidden, :input_html=> {:value=> "Blank"} %>
+  <br/>
+  <br/>
+  <%= f.input :body,:label=> "Message", as: :text, :input_html => { style: 'width: 100%; height: 50px;' } %>
+  <%= f.button :submit, class: 'btn-primary' %>
+  <%= submit_tag 'Cancel', type: :reset, class: 'btn btn-danger' %>
+<% end %>

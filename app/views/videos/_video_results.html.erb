@@ -1,0 +1,28 @@
+<div class="home-page-video" style="float:left;" style="margin-top:50px">
+	
+	<% @videos ||= videos %>
+	
+	
+	<% if @videos.nil? %>
+		<h1> Sorry there are no videos at this time </h1>
+	<%else%>
+		<% @videos.all.each do |video|%>
+			<%= render "vid_temp", :video=> video %>
+		<% end %>
+		<br/>
+		<%= paginate @videos, :remote => true%>
+	<%end%>
+</div>
+
+<% if ajax_results %>
+	<script>
+		$(".video-user").each(function(index, value) {  //Thumbnail 
+			//$(this).append($('<img width="320px" height="240" class="tp" src="img/no_image.jpg" />')); //OFFLINE
+			
+			if ($(this).attr("url")) {
+				$(this).append($('<img width="320px" height="249px" style="height:249px;" class="tp" src="'+$.jYoutube($(this).attr("url"))+'" />')); //ONLINE
+			}
+			
+		});
+	</script>
+<% end %>

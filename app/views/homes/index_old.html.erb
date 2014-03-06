@@ -1,0 +1,164 @@
+<div class="sqora">
+  
+<div class="tabbable shade"> <!-- MAIN VIDEO WINDOW -->
+
+  <ul class="nav nav-tabs"> <!-- ALL VIDEO WINDOW -->
+    <li class="active"><a href="#tab1" data-toggle="tab">ALL VIDEOS</a></li>
+    <li><a href="#tab2" data-toggle="tab">NEEDS FEEDBACK</a></li>
+    <li><a href="#tab3" data-toggle="tab">DEMO</a></li>
+    <li><a href="#tab4" data-toggle="tab">HOW TO</a></li>
+    <!-- Button to trigger modal -->
+    <%if user_signed_in?%>
+<a href="#myModal" role="button" class="btn" data-toggle="modal">UPLOAD</a>
+<%end%>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+       <!--SIDEBAR 1 -->
+     <div class="tabbable tabs-left">
+
+  <ul class="nav nav-tabs" id="sidebar">
+    <li class="active"><a href="#subtab1" data-toggle="tab">ACTIVE</a></li>
+    <li><a href="#subtab2" data-toggle="tab">NEWEST</a></li>
+    <li><a href="#subtab2" data-toggle="tab">THIS WEEK</a></li>
+    <li><a href="#subtab2" data-toggle="tab">THIS MONTH</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="subtab1" style="min-height: 170px; ">
+      <div style="margin-left:220px;">
+          <div ><%= render 'all_video' %></div>
+    </div></div>
+    </div>
+    <div class="tab-pane" id="subtab2">
+      <div style="margin-left:220px;"><div style="display:table-cell;"></div>
+      <div style="display:table-cell;padding-left:50px;"> </div></div>
+    </div>
+  </div>
+  
+</div>
+<!--SIDEBAR 1 END -->
+<!-- ALL VIDEO WINDOW -->
+  
+    </div>
+    <div class="tab-pane" id="tab1">
+      <p>ALL VIDEOS</p>
+      <div style="margin-left:220px;"><div style="display:table-cell;"><%= render 'form' %></div><div style="display:table-cell;padding-left:50px;"> <%= render 'form'  %></div></div>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <!--SIDEBAR 2 -->
+     <div class="tabbable tabs-left">
+
+  <ul class="nav nav-tabs" id="sidebar">
+    <li class="active"><a href="#subtab1" data-toggle="tab">ACTIVE</a></li>
+    <li><a href="#subtab2" data-toggle="tab">COMMENTS</a></li>
+
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="subtab1" style="min-height: 170px;">
+      <div style="margin-left:220px;"><div style="display:table-cell;"><%= render 'form' %></div><div style="display:table-cell;padding-left:50px;"> <%= render 'form'  %></div></div>
+    </div>
+    <div class="tab-pane" id="subtab2">
+     <div style="margin-left:220px;"><div style="display:table-cell;"><%= render 'form' %></div><div style="display:table-cell;padding-left:50px;"> <%= render 'form'  %></div></div>
+    </div>
+  </div>
+  
+</div>
+<!--SIDEBAR 2 END -->
+      
+    </div>
+    <div class="tab-pane" id="tab3">
+      <!--SIDEBAR 3 -->
+     <div class="tabbable tabs-left">
+
+  <ul class="nav nav-tabs" id="sidebar">
+    <li class="active"><a href="#subtab1" data-toggle="tab">ACTIVE</a></li>
+    <li><a href="#subtab2" data-toggle="tab">NEWEST</a></li>
+    <li><a href="#subtab2" data-toggle="tab">THIS WEEK</a></li>
+    <li><a href="#subtab2" data-toggle="tab">THIS MONTH</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="subtab1" style="min-height: 170px;">
+     <div style="margin-left:220px;"><div style="display:table-cell;"><%= render 'form' %></div><div style="display:table-cell;padding-left:50px;"> <%= render 'form'  %></div></div>
+    </div>
+    <div class="tab-pane" id="subtab2">
+     <div style="margin-left:220px;"><div style="display:table-cell;"><%= render 'form' %></div><div style="display:table-cell;padding-left:50px;"> <%= render 'form'  %></div></div>
+    </div>
+  </div>
+  
+</div>
+<!--SIDEBAR 3 END -->
+    </div>
+    <div class="tab-pane" id="tab4">
+      <!--SIDEBAR 4 -->
+     <div class="tabbable tabs-left">
+
+  <ul class="nav nav-tabs" id="sidebar">
+    <li class="active"><a href="#subtab1" data-toggle="tab">ACTIVE</a></li>
+    <li><a href="#subtab2" data-toggle="tab">NEWEST</a></li>
+    <li><a href="#subtab2" data-toggle="tab">THIS WEEK</a></li>
+    <li><a href="#subtab2" data-toggle="tab">THIS MONTH</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="subtab1" style="min-height: 170px;">
+      <div style="margin-left:220px;"><div style="display:table-cell;"><%= render 'form' %></div><div style="display:table-cell;padding-left:50px;"> <%= render 'form'  %></div></div>
+    </div>
+    <div class="tab-pane" id="subtab2">
+      <div style="margin-left:220px;"><div style="display:table-cell;"><%= render 'form' %></div><div style="display:table-cell;padding-left:50px;"> <%= render 'form'  %></div></div>
+    </div>
+  </div>
+  
+</div>
+<!--SIDEBAR 4 END -->
+    </div>
+  </div>
+  <div class="footer">
+    <div id="paginator"
+    <span style="text-align:center;"> < 1 2 3 4 > </span>
+    </div>
+    <div id="results">
+    <span style="float:right;">SHOWING 10 of 234</span>
+    </div>
+
+  </div>
+</div>
+
+</div> <!--SQORA END -->
+
+ 
+<%= paginate @results%>
+
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">UPLOAD VIDEO</h3>
+  </div>
+  <div class="modal-body">
+    <p>YOU ARE SUCCESFULLY LOGED IN</p>
+    <p>You can easily upload your video over here.</p>
+    <div id="upload_dialog"> <!-- UPLOAD VIDEO FORM -->
+<%= simple_form_for Video.new, :html => {:multipart => true}  do |f| %>
+<%=f.input :title, :validate=> true%>
+<%=f.input :tag_list, :validate=> true%>
+<%=f.input :video_link, :validate=> true%>
+Please select CATEGORY
+<%= f.input :category, :collection =>Video::CATEGORIES, :as => :radio_buttons,  :validate=> true%>
+
+
+ <label class="checkbox">
+  <input type="checkbox" value="">
+  By checking this I agree with <a href="#">Terms&Conditions </a>
+</label>
+  </div> <!-- UPLOAD VIDEO FORM -->
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%=f.submit "Upload" ,:class=>"btn btn-primary"%>
+  </div>
+</div>
+<%end%>
+
+
+<!-- Modal END -->

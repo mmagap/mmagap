@@ -1,0 +1,191 @@
+
+<div class="field">
+  <%= radio_button_tag :pl_pay_with, :card, true %>
+  <%= label_tag :pl_pay_with_card do %>
+    <ul style="display: inline-block" id="pl_mycards">
+       <li style="display: inline;width:50px;float: left"><%= image_tag "cards/visa.png", :width=>"30", :height=>"30" %></li>
+       <li style="display: inline;width:50px;float: left"><%= image_tag "cards/mastercard.png", :width=>"30", :height=>"30" %></li>
+       <li style="display: inline;width:50px;float: left"><%= image_tag "cards/discover.png", :width=>"30", :height=>"30" %></li>
+       <li style="display: inline;width:50px;float: left"><%= image_tag "cards/american_express.png", :width=>"30", :height=>"30" %></li>
+       <li style="display: inline;width:50px;float: left"><%= image_tag "cards/jcb.png", :width=>"30", :height=>"30" %></li>
+   </ul>  
+  <% end %>
+  <%= radio_button_tag :pl_pay_with, :paypal %>
+  <%= label_tag :lp_pay_with_paypal do %>
+  <ul>
+    <li><%= image_tag "cards/paypal.png", :width=>"30", :height=>"30" %></li>
+  </ul>  
+  <% end %>
+</div>
+
+<div id="pl_paypal_checkout" style="display:none">
+   
+    <form class="red" action="<%= @PAYPAL_URL %>" name="gateway_form" method="POST">
+
+    
+    
+      <fieldset>
+        <legend>Your Payment Gateway:</legend>
+       <p></p><h1 style="color:#308702;text-align:center;">Paypal Payment Pro</h1><p></p>
+      </fieldset>
+      <fieldset>
+       <legend>Your Payment Information:</legend>
+            <input type="hidden" value="2" name="rm">
+            <input type="hidden" value="_xclick" name="cmd">
+            <input type="hidden" value="<%= @MERCHANT_id %>" name="business">
+            <input type="hidden" value="USD" name="currency_code">
+            <input type="hidden" value="<%= @hostname %>/paypal_success/<%= @lesson_pay.order_id %>" name="return">
+            <input type="hidden" value="<%= @hostname %>/paypal_failure/<%= @lesson_pay.order_id %>" name="cancel_return">
+            <input type="hidden" value="h<%= @hostname %>/paypal_ipn/<%= @lesson_pay.order_id %>" name="notify_url">
+            <input type="hidden" value="<%= current_user.username %>" name="first_name">
+            <input type="hidden" value="<%= current_user.username %>" name="last_name">
+            <input type="hidden" value="<%= current_user.email %>" name="email">
+            <input type="hidden" value="<%= current_user.address %>" name="address">
+            <input type="hidden" value="New York" name="city">
+            <input type="hidden" value="10001" name="zip">
+            <input type="hidden" value="NY" name="state">
+            <input type="hidden" value="US" name="country">
+            <input type="hidden" value="<%= @lesson_pay.title %>" name="item_name">
+            <input type="hidden" value="<%= @lesson_pay.price %>" name="amount">
+            <input type="hidden" value="1" name="quintity ">
+            <input type="hidden" value="<%= @lesson_pay.description %>" name="descriptin">
+            <input type="hidden" value="001" name="item_number">  
+              
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>first name: </strong></span>
+                   <span style="margin-left:100px; align:left;float:right;"><%= current_user.username %></span></label>
+             
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>last name: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;"><%= current_user.username %></span></label>
+             
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>email: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;"><%= current_user.email %>
+             </label>
+             
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>address: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;"><%= current_user.address %></span>
+             </label>
+             
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>city: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;">New York
+             </label>
+             
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>zip: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;">10001</span>
+             </label>
+             
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>state: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;">NY</span>
+             </label>
+            
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>country: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;">sdfg</span>
+             </label>
+             
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>item name: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;"><%= @lesson_pay.title %></span>
+             </label>
+          
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>amount: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;"><%= @lesson_pay.price %></span>
+             </label>
+             
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>descriptin: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;"><%= @lesson_pay.description %></span>
+             </label>
+            
+             <label style="width:95%;" class="float" for="input-one">
+                   <span style="padding-left:5px;"><strong>item number: </strong></span>
+                   <span style="margin-left:100px;align:left;float:right;">001</span>
+             </label>
+             <input type="hidden" value="Instant Support Plan" name="custom">
+              
+       </fieldset>
+       <fieldset>
+             <input type="button" onclick="history.go(-1);" class="submit-button" value="Back">
+                   <input type="submit" value="Pay Now" class="submit-button">
+                   <p></p>
+       </fieldset>
+    </form>    
+     
+</div>
+
+
+
+<div id="pl_billing_fields">
+  <%= form_for lesson_pay_create_path(params[:video_id]), :html =>{:id=>"formValidate"} do |f| %>
+
+      <div class="field">
+        
+        First Name <br>
+        <%= f.text_field :firstname, name: :firstname  %>
+        <%#= show_field_error(@lesson_checkout, :firstname) %>
+      </div>
+      <div class="field">
+        Last Name <br>
+        <%= f.text_field :lastname, name: :lastname  %>
+        <%#= show_field_error(@lesson_checkout, :lastname) %>
+      </div>
+      <div class="field">
+        Amount<br>
+                
+       <%= f.text_field :price, name: :price, :readonly=>true,  :value=>@lesson_pay.price %>
+        
+        <%#= show_field_error(@lesson_checkout, :price) %>
+      </div>
+      
+    
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.text_field :email, name: :email  %>
+        <%#= show_field_error(@lesson_checkout, :email) %>
+      </div>
+        <div class="field">
+          <%= label_tag :card_type, "Credit Card type" %>
+          <%= select("card_type", "get_card", [['VISA', 'visa'],['American Express', 'american_express'],['MasterCard', 'mastercard'],   ['JCB', 'jcb']]) %>
+          <%#= show_field_error(@lesson_checkout, :card_number) %>
+        </div>
+        <div class="field">
+          <%= label_tag :credit_card_number, "Credit Card Number" %>
+          <%= text_field_tag :credit_card_number, nil, name: :credit_card_number %>
+          <%#= show_field_error(@lesson_checkout, :credit_card_number) %>
+        </div>
+        
+        
+        
+        <div class="field">
+          <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+          <%= text_field_tag :card_code, nil, name: :card_code %>
+          <%#= show_field_error(@lesson_checkout, :card_code) %>
+        </div>
+        <div class="field">
+          <%= label_tag :card_month, "Card Expiration" %>
+          <%#= f.date_select :credit_card_expires_on, order: [:month, :year] %>
+          <%= date_select("credit_card_expires_on", "credit_card_ex", :order => [:month, :year])%>
+          
+          
+          
+          <%#= show_field_error(@lesson_checkout, :credit_card_expires_on) %>
+        </div>
+      
+      <div id="stripe_error">
+      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+      </div>
+      <div class="actions">
+        <%= f.submit "Pay Now" %>
+      </div>
+    
+   <% end %>
+ </div>
+
+</script>

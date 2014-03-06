@@ -1,0 +1,7 @@
+<% if @user %>
+  $('#responce').html("Ok");
+  $('#responce').css({'color':'green'});
+  $('#conversation_recipients').val("<%=j @user.email%>")
+<% else %>
+  $('#responce').html("Not found");
+<% end %>

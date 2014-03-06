@@ -1,0 +1,16 @@
+<%= form_for lesson_pay_new_path(params[:video_id]) do |f| %>
+
+  
+  <div class="form-inputs">
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+      <!--<input id="email" name="email" type="text" /><br />-->
+      <%= show_field_error(@lesson_checkout, :email) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

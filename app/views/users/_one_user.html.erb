@@ -1,0 +1,17 @@
+<div class='span9 for-fluid' style='margin-left:0; margin-bottom:5px;'>
+  <div class='span3'>
+    <% image = get_image user %>
+    <%= image_tag image, style: "background:#555;max-height:80px;float:left;" %>
+  </div>
+  <div class='span8 row-fluid'>
+    <div class='span12'><h4><%= link_to user.username, user %></h4></div>
+    <div class='span12'><%= link_to user.email, user %></div>
+    <% if user_signed_in? %>
+      <div class='span12'>
+        <% unless current_user == user %>
+          <%= link_to 'Send Message', new_within_follow_path(:recipients=>user.email, :message_username=>user.username), id: "follow_user_link",  remote: true%>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

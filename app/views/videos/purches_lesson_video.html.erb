@@ -1,0 +1,115 @@
+<div id="mainVideoWrap" style="">
+<div id="mainVideoCont" style="overflow:hidden;">
+  <div id="mainVideoContText"> 
+    <h2>Purchse Videos</h2>
+    <div id="thumb-stats 1" style="width:240px;text-align:center;" >
+       <div style="margin-bottom:5px; ">Price:</div>
+       <div style="margin-bottom:15px;font-size: 25px;color:green; "><%= @video.price %>$</div>
+       <div style=" margin-top: 50px;">
+	
+	
+	 <%= simple_form_for @lesson_checkout, :url=>lesson_pay_create_path, :html => { :method => 'POST' } do |f| %>
+	    <!--<input type="hidden" name="video_id" value="<%#= @video.id %>" />-->
+	    <%= f.hidden_field :video_id, :value => @video.id %>
+	    <input type="submit" name="submit"/>
+	    
+	 <% end %>
+	
+	
+	 <%#= link_to "Purchase This Course", lesson_pay_new_path(:video_id=>@video.id), id:"new_link", :class=>"checkout" %>
+	
+	
+	
+       </div>
+    </div> 
+  </div>
+</div>
+
+<div id="header-desc" id="lft" style="width:69%;">
+<h3><%= @video.title %></h3>
+<div id="rgt">
+  <div class="votera" style="float:right;">
+    <% if user_signed_in? %>
+      
+    <% end %>
+    <span id='vote-value' class='votes btn '><%= pluralize @video.reputation_for(:votes).to_i, "vote" %></span>
+  </div>
+  <div id="rgt" class="btn btn-info"><%= link_to "Request Training", @video.user, id: "new_link", :style=>"color:black;" %></div>
+  
+</div>
+
+	
+
+  </div>
+	     <div id="vidProfile">
+	      <% image = get_image @video.user%>
+	      <%= image_tag image, :style=> "background:#555;max-height:50px;float:left;"%>
+	    </div>
+	    <div id="vidPoints lft">
+		<li>Activity Points:<b> 2</b></li>
+		<li>Pro Points:<b> 2</b></li>
+	    </div>
+       
+	<!--#lesson video-->
+	<!-- the player -->
+	<div class="flowplayer" style="margin-top: 25px;">
+	   Your are not autorize for this video. Please purchse first then you can see the video. 
+	</div>
+			
+	
+      <div style="height:20px;">&nbsp</div>
+      <div id='vid-info-s' class='row-fluid' style="background:#ccc; width:640px; height:auto;">
+	<div class='span6' id='video-description-span'>
+	  <div class='page-header'>
+	    <h5>Video Description</h5>
+	  </div>
+	  <% if @video.description %>
+	    <p><%= @video.description %></p>
+	  <% else %>
+	    <p class='a-little-hint'>No description added...</p>
+	  <% end %>
+	</div>
+	<div class='span6' id="rgt video-attributes-span"> 
+	  <div id="statbox" style="width:155px;float:right;">   
+	    <ul id="stats-top"> 
+	      <li class="views" style="float:left;width:40px; list-style-type:none;"><%=@video.impressionist_count%></li>
+	      <li class="views" style="float:left;width:65px; list-style-type:none;"><%=@video.comments.count%></li>
+	      <li class="views" style="float:left;width:40px;list-style-type:none;"><%=@video.reputation_for(:votes).to_i%></li>
+	    </ul>
+	    <ul id="stats-bot"> 
+	      <li class="views" style="float:left;width:40px; list-style-type:none;">VIEWS</li>
+	      <li class="views" style="float:left;width:65px; list-style-type:none;">COMMENTS</li>
+	      <li class="views" style="float:left;width:40px;list-style-type:none;">VOTES</li>
+	    </ul>
+	  </div>
+	  <p id="lft"> 
+	    <span id="rgt">
+	      <%@video.tags.limit(4).each do |tag|%>
+		<%= link_to tag, videos_path(tag: tag.name), :id=>"tag-"%>
+	      <%end%>
+	    <span>
+	  </p>
+	  <div class='clear'></div>
+	
+	  <div class="social">
+	    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+	    <a class="addthis_button_preferred_1"></a>
+	    <a class="addthis_button_preferred_2"></a>
+	    <a class="addthis_button_preferred_3"></a>
+	    <a class="addthis_button_compact"></a>
+	  </div>
+	  <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+	  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-500880a75781d23d"></script>
+	</div>
+      </div> <!--end <div style="background:#ccc; width:640px; height:100px;">-->
+      <% if is_signed_in_this? @video.user %>
+	<div id='show-vid-controle-btns'>
+	  <div class='btn-group'>
+	    <%= link_to 'Edit', edit_video_path(@video), class: 'btn' %>
+	    <%= link_to 'Delete', @video, method: :delete, :confirm => 'Are you sure?', class: 'btn btn-danger' %>
+	  </div>      
+	</div>
+      <% end %>
+    </div>
+  <br>  
+</div>

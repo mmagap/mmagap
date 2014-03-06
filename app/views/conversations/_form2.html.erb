@@ -1,0 +1,11 @@
+<%= simple_form_for :conversation, url: :conversations do |f| %>
+  <h1>
+    <%= link_to params[:message_username].capitalize, request.referer %>
+  </h1>
+  <%= f.input :recipients, :as => :hidden ,:input_html => { :value => params[:recipients] } %>
+  <%= f.input :subject %>
+  <%= f.input :body %>
+  <div class="form-actions">
+    <%= f.button :submit, :class=> 'btn btn-large btn-success', :value => "Send Message" %>
+  </div>
+<% end %>

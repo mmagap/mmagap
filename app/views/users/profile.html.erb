@@ -1,0 +1,222 @@
+<div>
+
+<div class="tabbable" > <!-- MAIN VIDEO WINDOW -->
+
+  <ul class="nav nav-tabs"> <!-- ALL VIDEO WINDOW -->
+    <li class="active"><a href="#tab1" data-toggle="tab">USER INFO</a></li>
+    <li><a href="#tab2" data-toggle="tab">UPLOADS</a></li>
+    <li><a href="#tab3" data-toggle="tab">FAVORITES</a></li>
+    <li><a href="#tab4" data-toggle="tab">FOLLOWING</a></li>
+    <li><a href="#tab5" data-toggle="tab">MESSAGES</a></li>
+    <!--IF SIGNED IN AND CURRENT USER -->
+    
+    <!-- END IF -->
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active"  id="tab1">
+      <div style="width:100%">
+          <div id="lft"  style="border-right:3px solid #ccc; margin-right:10px;height:350px;">
+            <div id="lft">
+              <% image = get_image @user%>
+              <%= image_tag image, :style=> "background:#555;max-height:80px;float:left;"%>
+            </div>
+                <div id="vidPoints lft">
+                    <li>Activity Points:<b> 2</b></li>
+                    <li>Pro Points:<b> 2</b></li>
+                </div>
+              </div>
+          <div id="lft">
+          <ul id="tablerok">
+              <li>Name: <span><%=@user.username.capitalize%></span></li>
+              <li>Member for: <span><%=time_ago_in_words(@user.created_at)%></span></li>
+              <li>Joined: <span><%=@user.created_at.strftime("%B %d, %Y")%></span></li>
+              <li>Latest Activity: <span><%=@user.updated_at.strftime("%m-%d-%Y")%></span></li>
+              <li>Website: <span>www.mmagap.com/users/<%= @user.username%></span></li>
+              <li>About Me: <span>Fighter</span></li>
+              <li>Country: <span>USA</span></li>
+          </ul>
+        </div>
+       </div>     
+    </div>
+    <div class="tab-pane" id="tab2">
+                  <% @user.videos.each do |video|%>
+
+                          <div id="user-display" style="float:left;margin-right:20px;">
+                          <div class="video-user" url="<%=video.video_link%>"  > 
+
+
+
+                          <div id="thumb-desc" >
+                            
+
+                            <div id="sideMenu">
+                              <div id="thumb-title" class="vid-text" >
+                                      <a href="/" style="color:#333;" title="Click to Visit Page">
+                                        <%=video.title%>
+                                      </a>
+                                  </div> 
+                                   <div id="thumb-author" class="vid-text" >
+                                    By <a href="#" title="View User Profile">
+                                            <%= @user.username %>
+                                       </a>
+                                   </div>
+                            </div>
+                            <div id="top-thumb-desc">
+                              <div id="top-like-box">
+                              </div>
+                                   <div id="thumb-title" class="vid-text" >
+                                    <%=link_to video.title, video%>
+                                  </div> 
+                                  <div id="thumb-author" class="vid-text" >
+                                    By <%=link_to video.user.username, video, :class=>"user_link"%>
+                                  </div>
+                                   <%=link_to "", video, :id=>"linker"%>
+                                  <div id="thumb-category" class="vid-text" >
+                                    <a href="#" title="Select Category" style="color:#C00; text-decoration:none;">
+                                    <%=video.category%>
+                                    </a>
+                                  </div>
+                                <div id="thumb-date" style="float:left;margin-top:15px">
+                                  <%=time_ago_in_words(video.created_at)%> ago
+                                </div>  
+                            </div><a  id="thumb-plays" title="Click To Play"> </a>
+                            
+
+                          <div id="bot-thumb-desc">
+
+                              
+                                <div id="thumb-tags" class="vid-text" >
+                                  <%video.tags.each do |tag| %>
+                                  <%= link_to tag, tag_path(tag), :id=>"tag-"%>
+                                  <%end%>
+
+
+                                  
+                                </div> 
+                                
+                                <div id="thumb-stats" >
+                                  <ul id="stats-top"> 
+                                    <li class="views" style="float:left;width:40px; list-style-type:none;"><%=video.impressionist_count%></li>
+                                    <li class="views" style="float:left;width:65px; list-style-type:none;"><%=video.comments.count%></li>
+                                    <li class="views" style="float:left;width:40px;list-style-type:none;"><%=video.reputation_for(:votes).to_i%></li>
+                                  </ul>
+                                  <ul id="stats-bot"> 
+                                    <li class="views" style="float:left;width:40px; list-style-type:none;">VIEWS</li>
+                                    <li class="views" style="float:left;width:65px; list-style-type:none;">COMMENTS</li>
+                                    <li class="views" style="float:left;width:40px;list-style-type:none;">VOTES</li>
+                                  </ul>
+                                </div>
+                                
+                                
+                              </div>
+                          </div>
+
+                          </div>
+                          <img style="margin-top:-9px;" src="/img/shadow-bottom.jpg" />
+                          <br>
+                                   
+            </div>
+
+      <%end%>
+    </div>
+    <div class="tab-pane" id="tab3">
+      <% @user.likes.each do |like|%>
+
+        <div id="user-display" style="float:left;margin-right:20px;">
+        <div class="video-user" url="<%=like.video.video_link%>"  > 
+
+
+
+        <div id="thumb-desc" >
+          
+
+          <div id="sideMenu">
+            <div id="thumb-title" class="vid-text" >
+                    <a href="/" style="color:#333;" title="Click to Visit Page">
+                      <%= like.video.title%>
+                    </a>
+                </div> 
+                 <div id="thumb-author" class="vid-text" >
+                  By <a href="#" title="View User Profile">
+                          <%= like.user.username %>
+                     </a>
+                 </div>
+          </div>
+          <div id="top-thumb-desc">
+            <div id="top-like-box">
+            </div>
+                 <div id="thumb-title" class="vid-text" >
+                  <%=link_to like.video.title, like.video%>
+                </div> 
+                <div id="thumb-author" class="vid-text" >
+                  By <%=link_to like.video.user.username, like.video, :class=>"user_link"%>
+                </div>
+                 <%=link_to "", like.video, :id=>"linker"%>
+                <div id="thumb-category" class="vid-text" >
+                  <a href="#" title="Select Category" style="color:#C00; text-decoration:none;">
+                  <%= like.video.category%>
+                  </a>
+                </div>
+              <div id="thumb-date" style="float:left;margin-top:15px">
+                <%=time_ago_in_words(like.video.created_at)%> ago
+              </div>  
+              </div>
+              <a  id="thumb-plays" title="Click To Play"> </a>
+                            
+
+              <div id="bot-thumb-desc">
+                              
+                <div id="thumb-tags" class="vid-text" >
+                  <%like.video.tags.each do |tag| %>
+                  <%= link_to tag, tag_path(tag), :id=>"tag-"%>
+                  <%end%>                                  
+                </div> 
+                                
+                <div id="thumb-stats" >
+                  <ul id="stats-top"> 
+                    <li class="views" style="float:left;width:40px; list-style-type:none;"><%=like.video.impressionist_count%></li>
+                    <li class="views" style="float:left;width:65px; list-style-type:none;"><%=like.video.comments.count%></li>
+                    <li class="views" style="float:left;width:40px;list-style-type:none;"><%=like.video.reputation_for(:votes).to_i%></li>
+                  </ul>
+
+                  <ul id="stats-bot"> 
+                    <li class="views" style="float:left;width:40px; list-style-type:none;">VIEWS</li>
+                    <li class="views" style="float:left;width:65px; list-style-type:none;">COMMENTS</li>
+                    <li class="views" style="float:left;width:40px;list-style-type:none;">VOTES</li>
+                  </ul>
+
+                </div>                          
+              </div>
+            </div>
+          </div>
+          <img style="margin-top:-9px;" src="/img/shadow-bottom.jpg" />
+          <br>                         
+        </div>
+      <%end%>
+    </div>
+    <div class="tab-pane" id="tab4">
+      <p>FOLLOWING</p>
+    </div>
+    <div class="tab-pane" id="tab5">
+      <% if user_signed_in? %>
+        <%= link_to "Send Message", new_conversation_path(:recipients=>@user.email, :message_username=>@user.username), id: "user_link",  remote: true, :class=> 'btn btn-large btn-success'%>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="tab6">
+      <%=render "form" %>
+    </div>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>

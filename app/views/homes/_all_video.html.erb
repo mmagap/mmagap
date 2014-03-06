@@ -1,0 +1,73 @@
+<div id="videowrapper" style="background:#C00;">
+  <div id="homeVideoWrap" style="width:100%;height:100%;" >
+    
+<% @videos.limit(2).each do |video|%> <!--EACH PAGE 10 VIDEOS -->
+
+
+ <!-- ONE VIDEO -->
+ <div id="videoCell" style="float:left; margin-left:20px;">
+  <div class="video-user" url="<%=video.video_link%>" > 
+
+      <div id="thumb-desc" >
+
+          <div id="top-thumb-desc">
+              <div id="top-like-box">
+                  <a href="#" title="Vote Up"><img width="20px" src="/img/ilike.gif" /></a>
+                  <a href="#" title="vote Down"><img width="20px" src="/img/ihate.gif" /></a>
+              </div>
+         <div id="thumb-title" class="vid-text" >
+            <a href="/" title="Click to Visit Page">
+             <%=link_to video.title, video%>
+            </a>
+        </div> 
+         <div id="thumb-author" class="vid-text" >
+          By <%=link_to video.user.username, video%>
+         </div>
+         
+      <div id="thumb-category" class="vid-text" >
+        <a href="#" title="Select Category" style="color:#C00; text-decoration:none;">
+          <%=video.category%>
+        </a>
+      </div>
+      <div id="thumb-date" style="float:left;"><%=time_ago_in_words(video.created_at)%> ago</div> 
+  </div><a  id="thumb-plays" title="Click To Play"><img src="/img/play_button.png" /> </a>
+  
+
+<div id="bot-thumb-desc">
+
+    
+      <div id="thumb-tags" class="vid-text" >
+        <%video.tags.limit(4).each do |tag|%>
+      <%= link_to tag.name, tag_path(tag.name), :id=>"tag-"%>
+        <%end%>
+        
+      </div> 
+      
+      <div id="thumb-stats" >
+        <ul id="stats-top"> 
+          <li class="views" style="float:left;width:40px; list-style-type:none;"><%=video.impressionist_count%></li>
+          <li class="views" style="float:left;width:65px; list-style-type:none;"><%=video.comments.count%></li>
+          <li class="views" style="float:left;width:40px;list-style-type:none;"><%=video.reputation_for(:votes).to_i%></li>
+        </ul>
+        <ul id="stats-bot"> 
+          <li class="views" style="float:left;width:40px; list-style-type:none;">VIEWS</li>
+          <li class="views" style="float:left;width:65px; list-style-type:none;">COMMENTS</li>
+          <li class="views" style="float:left;width:40px;list-style-type:none;">VOTES</li>
+        </ul>
+      </div>
+      
+      
+    </div>
+</div>
+</div>
+<img style="margin-top:0px;" src="/img/shadow-bottom.jpg" />
+</div>
+ <!--This is how we getting URL--><!-- END -->
+<%end%>
+
+</div>
+   
+</div>
+<div id="paginator" style="">
+    <%= paginate @videos %>
+</div>

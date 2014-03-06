@@ -1,0 +1,47 @@
+<div id="comments" style="margin-left: <%=temp%>px;" >
+      <div class="comment">
+        <div id="comTitle" >
+          <span id="comUser">
+            <% if user_signed_in? %>
+            <%=link_to comment.user.username, user_path(comment.user_id)%>
+            <% else %>
+                 <%=link_to comment.user.username, new_user_session_path, :onclick => "alert('You need to sign in or sign up before continuing.')" %> 
+            <% end %>
+            
+          </span>
+          <span class='text-right created-at'><%= comment.created_at.strftime('%B/%e/%Y %H:%M:%S') %></span>
+          <div id="comImg" >
+            <% image = get_image comment.user%>
+            <%= image_tag image, :style=> "background:#555;max-height:50px;float:left;"%>
+          </div>
+        </div>
+        <p><%= simple_format comment.content %></p>
+        <div class='comment-footer row-fluid'>
+          <p>
+            <%= (link_to 'reply', '#', class: 'reply', data_value: comment.id, data_user_info: "New comment to #{comment.user.username} comment, created at #{comment.created_at.strftime('%B/%e/%Y %H:%M:%S')}" if user_signed_in?) %>
+            <% if user_signed_in? && comment.was_not_liked_by?(current_user) %>
+              <%= link_to '#', class: 'comment-like like', data_user_id: current_user.id, data_like: true, data_id: comment.id, data_send_to: comment_likes_path do %> 
+                <%= image_tag 'like.png', class: 'like-finger' %>
+              <% end %>
+            <% else %>
+              <% if user_signed_in? %>
+                <% class_l =  comment.was_liked_positive_by?(current_user.id) ? 'this_value' : "" %>
+              <% end %>
+              <%= image_tag 'like.png', class: 'has-ben-liked '+ class_l ||= ""%>
+            <% end %>
+            <span class='like-count'> <%= comment.comment_likes.where(like_or_not: true).count %> </span>
+            <%  if user_signed_in? && comment.was_not_liked_by?(current_user) %>
+              <%= link_to '#', class: 'comment-like dethlike', data_user_id: current_user.id, data_like: false, data_id: comment.id, data_send_to: comment_likes_path do %> 
+                <%= image_tag 'd_like.png', class: 'like-finger' %>
+              <% end %>
+            <% else %>
+              <% if user_signed_in? %>
+                <% class_l =  comment.was_liked_positive_by?(current_user.id) ? "" : 'this_value' %>
+              <% end %>
+              <%= image_tag 'd_like.png', class: 'has-ben-liked '+ class_l ||= "" %>
+            <% end %>
+            <span class='dethlike-count'> <%= comment.comment_likes.where(like_or_not: false).count %> </span>
+          </p>
+        </div>     
+      </div>
+    </div>

@@ -1,0 +1,35 @@
+<% if defined? user %>
+  <% mailbox ||= user.mailbox  %>
+<% end %>
+<div class="container container-home">
+  <div class="row-fluid">
+    <div class="span12 well">
+      <h1>Conversations</h1>
+      <h2>Inbox</h2>
+      <ul>
+        <%= render mailbox.inbox %>
+      </ul>
+      <h2>Sentbox</h2>
+      <ul>
+        <%= render mailbox.sentbox %>
+      </ul>
+      <h2>Trash</h2>
+      <ul>
+        <%= render mailbox.trash %>
+      </ul>
+      <br/>
+      <br/>
+      <% if user_signed_in?  %>
+        <%= link_to 'Start Conversation', start_path(message_username: user.name), class: 'btn', id: 'start-conversation', remote: true %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

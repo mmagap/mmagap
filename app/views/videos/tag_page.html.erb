@@ -1,0 +1,96 @@
+<h1 style="font-size: 38px;min-height:90px;margin-top:50px;">TAGS</h1>
+	<p>
+	A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question.
+	</p>
+<hr/>
+
+	<div>
+		<div class="tabbable" > <!-- MAIN VIDEO WINDOW -->
+
+		  <ul class="nav nav-tabs"> <!-- ALL VIDEO WINDOW -->
+		    <li class="active"><a href="#tab1" data-toggle="tab">POPULAR</a></li>
+		    <li><a href="#tab2" data-toggle="tab">NAME</a></li>
+		    <li><a href="#tab3" data-toggle="tab">NEW</a></li>
+		  </ul>
+		  <div class="tab-content">
+		    <div class="tab-pane active"  id="tab1">
+		          <div id="tag_cloud">
+		          	
+
+
+	<table class="table">  
+        <thead>  
+          <tr>  
+            <th>TAG     <input type='text' size='10' style='margin-left: 15px;' class='tag-search-input'> </span></th>  <!-- search logic is in the application.js -->
+            <th>TAG COUNT</th>  
+          </tr>  
+        </thead>  
+        <tbody> 
+        <% tag_cloud Video.tag_counts_on(:tags).order('count desc'), %w{s m l} do |tag, css_class| %>  
+          <%= render 'tag', tag: tag, css_class: css_class%>
+        <% end %>	
+        </tbody>  
+      </table>  
+			
+</div>
+
+		    </div>
+		    <div class="tab-pane" id="tab2">
+		    <div id="tag_cloud">
+
+		    		<table class="table">  
+        <thead>  
+          <tr>  
+            <th>TAG     <input type='text' size='10' style='margin-left: 15px;' class='tag-search-input'> </span></th>  
+            <th>TAG COUNT</th>  
+          </tr>  
+        </thead>  
+        <tbody> 
+        <% tag_cloud Video.tag_counts.order('name'), %w{s m l} do |tag, css_class| %>  
+          <%= render 'tag', tag: tag, css_class: css_class%>
+       <% end %>	
+        </tbody>  
+      </table>  
+
+			</div>
+
+		    </div>
+
+
+
+
+		    <div class="tab-pane" id="tab3">
+		    <div id="tag_cloud">
+	<table class="table">  
+        <thead>  
+          <tr>  
+            <th>TAG     <input type='text' size='10' style='margin-left: 15px;' class='tag-search-input'> </span></th>  
+            <th>TAG COUNT</th>  
+          </tr>  
+        </thead>  
+        <tbody> 
+        <% tag_cloud Video.tag_counts.order("updated_at DESC"), %w{s m l} do |tag, css_class| %>  
+          <%= render 'tag', tag: tag, css_class: css_class%>
+        <% end %>	
+        </tbody>  
+      </table>  
+
+		</div>
+    </div>
+
+</div>
+
+
+<script>
+$('a.l').click(function(){
+	
+	$('#video_results').show();
+});
+$('a.s').click(function(){
+	$('#video_results').show();
+});
+$('a.m').click(function(){
+	$('#video_results').show();
+});
+</script>
+

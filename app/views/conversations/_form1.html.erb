@@ -1,0 +1,8 @@
+<%= simple_form_for :conversation, url: :conversations do |f| %>
+  <%= f.input :recipients, :as => :hidden ,:input_html => { :value => params[:recipients] } %>
+  <%= f.input :subject, :input_html => {:value => params[:deal_name]}, :class=>"span12"  %>
+  <%= f.input :body, as: :text, :input_html => { :cols => 50, :rows => 3 } %>
+  <div class="form-actions">
+    <%= f.button :submit,  :class=> 'btn btn-large btn-success', :value => "Send Message" %>
+  </div>
+<% end %>

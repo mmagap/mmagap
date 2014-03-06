@@ -1,0 +1,29 @@
+// Active Admin CSS Styles
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+// To customize the Active Admin interfaces, add your
+// styles here:
+
+.cke_chrome {
+       
+        float: left;
+    }
+
+body.active_admin {
+    
+    .cke_chrome {
+        width: 76% !important;
+        overflow: hidden;
+        float: left !important;
+    }
+    .cke_toolbar {
+        .cke_button {
+          padding: 5px;
+        }
+    }
+  
+}
+table.dashboard > tbody > tr > td {
+  display:block;
+}

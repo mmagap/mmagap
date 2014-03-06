@@ -1,0 +1,42 @@
+
+<%= form_tag @video :url=>'/lesson' do |f| %>
+  <% if @video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+
+      <ul>
+      <% @video.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :category, :value=>'Lesson' %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+    <%= show_field_error(@video, :title) %>
+  </div>
+  <div class="line">
+      <label for="tags">Tags</label>
+      <ul id="mytags3"></ul>
+    </div>
+  <div class="field">
+
+  <%= f.label :tag_list, "Tags (separated by commas)" %><br /> <!-- I DON'T KNOW IF WE NEED THIS -->
+  <div style="display:none;"><%= f.text_field :tag_list %></div>
+  </div>
+  <div class="field">
+ 	<%= f.file_field(:lesson_upload)  %>
+        <%#= f.hidden_field(:lesson_upload) %>
+        <%= show_field_error(@video, :lesson_upload) %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, as: :hidden%>
+    <%= show_field_error(@video, :description) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

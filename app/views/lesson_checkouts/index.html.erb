@@ -1,0 +1,21 @@
+<h1>Listing lesson_checkouts</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lesson_checkouts.each do |lesson_checkout| %>
+  <tr>
+    <td><%= link_to 'Show', lesson_checkout %></td>
+    <td><%= link_to 'Edit', edit_lesson_checkout_path(lesson_checkout) %></td>
+    <td><%= link_to 'Destroy', lesson_checkout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lesson checkout', new_lesson_checkout_path %>

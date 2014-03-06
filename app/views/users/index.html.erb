@@ -1,0 +1,114 @@
+
+
+<div class="tabbable shade"> <!-- MAIN VIDEO WINDOW -->
+  <ul class="nav nav-tabs"> <!-- ALL VIDEO WINDOW -->
+    <li class="active"><%=link_to "Users", users_path%></li>
+    <li><%= sort_link(@search, :username, "Sort by Username" , :id=> "sort_username")%></li>
+    <li> <%=sort_link(@search,:created_at , "Sort by Sign up", :id=> "sort_created")%></li>
+        <%if user_signed_in?%>
+    <li><a href="#myModal" role="button" class="btn" data-toggle="modal">UPLOAD</a></li>
+    <%end%>
+    <li>  <%= search_form_for(@search, :html => {:method => :get , :id=> "theFieldID"} ) do |f|%>
+  <%=f.text_field :username_cont, :placeholder => "Who are you looking for?" %>
+      <%= button_tag(:type => 'submit', :id=>"ajaxSubmit", :class=> 'btn btn-info') do %>
+    <i>Search</i>
+
+    <% end %></li>
+
+
+    <!-- Button to trigger modal -->
+  </ul>
+</div>  
+<div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+
+
+
+       <!--SIDEBAR 1 -->
+     <div class="tabbable tabs-left">
+  <div class="tab-content">
+          <!-- deal results-->
+  <div style="display:none">
+  <%=f.text_field :created_at_lteq, :placeholder => "When" , :style=> "float:left"%>
+
+  <% Video::CATEGORIES.each do |category| %>
+    <label class="radio">
+    <%= radio_button_tag 'q[category_eq_any][]', category %>
+  <%end%>
+
+
+  <div class=""> 
+    <%= button_tag(:type => 'submit', :id=>"ajaxSubmit") %>
+<%end%>
+</div>
+</div>
+<div class='row-fluid followers' id='listing-users'>
+  <%@users.each do |user|%>
+    <%= render( 'users/one_user', user: user) %>
+  <%end%>
+</div>
+    </div>
+  </div>
+  
+  </div>
+</div>
+<!-- /container -->
+</div>
+
+
+<!-- -->
+  <div style="display:none; border: 1px solid red;">
+<%= search_form_for(@search, :html => {:method => :get , :id=> "theFieldID"}, :remote=> true ) do |f|%>
+  <%=f.text_field :username_cont, :placeholder => "What are you looking for?" %>
+      <%= button_tag(:type => 'submit', :id=>"ajaxSubmit") do %>
+    <i class="icon-search icon-white">Search</i>
+    <% end %>
+  <%=f.text_field :created_at_lteq, :placeholder => "When" , :style=> "float:left"%>
+
+  <% Video::CATEGORIES.each do |category| %>
+    <label class="radio">
+    <%= radio_button_tag 'q[category_eq_any][]', category %>
+  <%end%>
+
+
+  <div class=""> 
+<%end%>
+</div>
+</div>
+
+
+
+    <div id='page-spinner' style="display:none;"><%=image_tag 'whole-page.gif'%></div>
+
+
+
+
+<script>
+$('#user').click(function(){
+  $('#sort_username').click();
+
+});
+
+$('#created').click(function(){
+
+  $('#sort_created').click();
+
+});
+</script>
+
+
+    <!-- Modal -->
+
+
+
+<!-- Modal END -->
+
+
+
+
+
+
+
+
+
+

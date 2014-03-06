@@ -1,0 +1,104 @@
+<div id="content">
+<h1>New video Lesson</h1>
+
+<%= render 'form_lesson' %>
+
+
+ <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+<% @mytag = all_tags %>
+<script>
+        $(function(){
+            var sampleTags = [<%= raw(@mytag.map(&:inspect).join(', ')) %>];
+            
+            $("#mytags3").tagit({
+                availableTags: sampleTags,
+                triggerKeys:['enter', 'comma', 'tab'],
+                select:true,
+                sortable:true,
+                allowSpaces: true,
+                maxLength:5,
+                maxTags:5,
+                //autocomplete: {delay: 0, minLength: 2}
+            });
+            
+            //$('#switcher').themeswitcher({
+            //    imgpath: 'Super_Theme_Switcher/images/',
+            //    loadTheme: 'Flick',
+            //    height: '450',
+            //    themes: [
+            //        {
+            //            title: "Blitzer",
+            //            name: "blitzer",
+            //            icon: "theme_90_blitzer.png"
+            //        },
+            //        {
+            //            title: "Flick",
+            //            name: "flick",
+            //            icon: "theme_90_flick.png"
+            //        },
+            //        {
+            //            title: "Overcast",
+            //            name: "overcast",
+            //            icon: "theme_90_overcast.png"
+            //        },
+            //        {
+            //            title: "Pepper",
+            //            name: "pepper-grinder",
+            //            icon: "theme_90_pepper_grinder.png"
+            //        },
+            //        {
+            //            title: "Redmond",
+            //            name: "redmond",
+            //            icon: "theme_90_windoze.png"
+            //        },
+            //        {
+            //            title: "Smoothness",
+            //            name: "smoothness",
+            //            icon: "theme_90_smoothness.png"
+            //        },
+            //        {
+            //            title: "South Street",
+            //            name: "south-street",
+            //            icon: "theme_90_south_street.png"
+            //        },
+            //        {
+            //            title: "Sunny",
+            //            name: "sunny",
+            //            icon: "theme_90_sunny.png"
+            //        },
+            //        {
+            //            title: "UI Lightness",
+            //            name: "ui-lightness",
+            //            icon: "theme_90_ui_light.png"
+            //        },
+            //    ],
+            //    additionalThemes: [
+            //        {
+            //            title: 'Aristo',
+            //            name: 'aristo',
+            //            icon: 'theme_90_aristo.png',
+            //            url: 'Aristo-jQuery-UI-Theme/css/Aristo/jquery-ui-1.8.7.custom.css'
+            //        }
+            //    ]
+            //});
+           
+});
+
+
+$(document).click(function(){
+    //alert($(":input[name='tags']").map(function () { return $(this).val(); }).get())
+    //$("#video_tag_list3").val($(":input[name='item[tags][]']").map(function () { return $(this).val(); }).get())
+    $("#video_tag_list3").val($(":input[name='tags']").map(function () { return $(this).val(); }).get())
+
+});
+
+
+
+</script>
+
+
+<h2>Upload your Video</h2>
+<div id="video_attachment"></div>
+<%= link_to "Video Listing", videos_path %>
+<%= link_to 'Back', videos_path %>
+</div>

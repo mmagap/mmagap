@@ -1,0 +1,73 @@
+<%= form_for @subscription do |f| %>
+  <% if @subscription.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+      <ul>
+      <% @subscription.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  
+  <%= f.hidden_field :plan_id%>
+  <%= f.hidden_field :stripe_card_token %>
+  <%= f.hidden_field :paypal_customer_token %>
+  <%= f.hidden_field :paypal_payment_token %>
+  
+  <% unless @subscription.payment_provided? %>
+    <div class="field">
+      <%= radio_button_tag :pay_with, :card, true %>
+      <%= label_tag :pay_with_card do %>
+          <ul style="display: inline-block">
+            <li style="display: inline;width:50px;float: left"><%= image_tag "cards/visa.png", :width=>"30", :height=>"30" %></li>
+            <li style="display: inline;width:50px;float: left"><%= image_tag "cards/mastercard.png", :width=>"30", :height=>"30" %></li>
+            <li style="display: inline;width:50px;float: left"><%= image_tag "cards/discover.png", :width=>"30", :height=>"30" %></li>
+            <li style="display: inline;width:50px;float: left"><%= image_tag "cards/american_express.png", :width=>"30", :height=>"30" %></li>
+            <li style="display: inline;width:50px;float: left"><%= image_tag "cards/jcb.png", :width=>"30", :height=>"30" %></li>
+          </ul>
+      <% end %>
+      <%= radio_button_tag :pay_with, :paypal %>
+      <%= label_tag :pay_with_paypal do %>
+          <ul>
+            <li><%= image_tag "cards/paypal.png", :width=>"30", :height=>"30" %></li>
+          </ul>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <div id="paypal_checkout"  style="display:none;"> 
+    <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_checkout_path(:plan_id => @subscription.plan_id)   %>
+  </div>
+  
+  <div id="billing_fields">
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    
+    <% if @subscription.payment_provided? %>
+        Paument has been provided. Click "Subscription" to complete  the Subscription.
+    <% else %> 
+        <div class="field">
+            <%= label_tag :card_number, "Credit Card Number " %>
+            <%= text_field_tag :card_number, nil, name: nil %>
+        </div>
+        <div class="field">
+            <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+            <%= text_field_tag :card_code, nil, name: nil %>
+        </div>
+        <div class="field">
+          <%= label_tag :card_month, "Card Expiration" %>
+          <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
+          <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
+        </div>
+    <% end %>
+    <div id="stripe_error">
+      <noscript>Javascript is not enabled and is required for this form. First enable it in your we browser setting.</noscript>
+    </div>  
+    <div class="actions"><%= f.submit "Subscribe" %></div>
+  </div>
+  
+<% end %>

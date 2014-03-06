@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  to_learn: MyString
+  on_leant_amount: MyString
+  to_teach: MyString
+  for_teaching_amount: MyString
+
+two:
+  user_id: 1
+  to_learn: MyString
+  on_leant_amount: MyString
+  to_teach: MyString
+  for_teaching_amount: MyString

@@ -1,0 +1,7 @@
+<%- if @video.errors.any? %>
+  console.log('Error');
+  $('#new_video').html('<%= escape_javascript(render('videos/form')) %>');
+<%- else %>
+  console.log('Created');
+  location.reload();
+<%- end %>

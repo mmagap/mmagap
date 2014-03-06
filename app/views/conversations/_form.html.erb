@@ -1,0 +1,25 @@
+<div id="new-conversation-form">
+  <% unless params[:recipients] %>
+    <%= form_tag find_user_path, method: 'get', id: 'find-user-by-email' do %>
+      <div class="input string required email-finder">
+        <label class="string required control-label" for="email">
+          <abbr title="required">*</abbr>
+          Find user by mail
+        </label>
+        <%= text_field_tag :search, params[:search] %>
+        <div id="responce">Not found</div>
+      </div>
+    <% end %>
+  <% end %>
+  <%= simple_form_for :conversation, url: :conversations, html: {id: 'main-conversation-form'} do |f| %>
+    <% if !params[:recipients] %>
+      <%= f.input :recipients, as: :hidden, required: true %>
+    <% else %>
+      <%= f.input :recipients, as: :hidden, required: true, input_html: { value: params[:recipients] } %>
+    <% end %>
+    <%= f.input :subject %>
+    <%= f.input :body, as: :text %>
+    <%= f.button :submit, :class=> 'btn pull-right', :value => "Send Message" %>
+  <% end %>
+  <div class="clear"></div>
+</div>

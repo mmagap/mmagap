@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Panda Bootstrap</title>
+    
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
+    
+   
+
+    <!-- PandaStream -->
+   
+    <%= javascript_include_tag "new/panda-uploader" %>
+
+
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      .td-filename {
+        width: 400px;
+      }
+      .td-filesize {
+        width: 40px;
+      }
+      .td-progress {
+        width: 300px;
+      }
+
+      .td-action .btn {
+        width: 75px;
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+  <p style="color: green"><%= flash[:notice] %></p>
+
+
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="#">PandaStream</a>
+        <ul class="nav">
+          <%= yield :navbar %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+      </div>
+      <div class="span10">
+          <%= yield %>
+      </div>
+    </div>
+  </div>
+
+
+  </body>
+</html>

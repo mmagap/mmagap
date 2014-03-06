@@ -1,0 +1,2 @@
+$('#new_link').hide().after('<%= j render("form1") %>');
+$('#user_link').hide().after('<%= j render("form") %>');

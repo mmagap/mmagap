@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mmagap</title>
+
+  <%= javascript_include_tag 'responce' %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "skin/minimalist"%>
+  <%= javascript_include_tag "application" %>
+  
+  
+ 
+  
+  <%= csrf_meta_tags %>
+  <%#= javascript_include_tag 'swfobject' %>
+
+  <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+  <%= tag :meta, :name => "stripe-key", :content => 'sk_test_ajd1sT7TYanBnklgQNxaxawj' %>
+  <%= stylesheet_link_tag "flick/jquery-ui.css"%>
+  <script type="text/javascript" src="script_popup_signin.js"></script>
+  
+ 
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
+<%#= javascript_include_tag "flowplayer/flowplayer.min" %>
+
+<!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- site specific styling -->
+  <style type="text/css">
+   
+   .flowplayer { width: 70%; }
+    #flash_error, {
+         border: 1px solid #ffffff;
+         padding: 4px;
+         margin-bottom: 10px;
+         background-color: #FB996F;
+     }
+     
+     #flash_notice {
+         border: 1px solid #000066;
+         padding: 4px;
+         margin-bottom: 10px;
+         background-color: #A3B15A;
+     }
+     
+     #error_message {
+         color: #FF0000;
+     }
+     
+     #error_explanation ul li{color: #FF0000;}
+  </style>
+
+</head>
+    
+
+<body>
+
+<div class="navbar ">
+  
+  <div class="navbar-inner sqora">
+    <div id="right_bar">
+      <%#= link_to "Home logo", videos_path %>
+      <%=link_to videos_path, :class=> 'home' do%>
+      <%=image_tag 'home.png', :style=>'width:32px; height:32px;'%>
+      <%end%>|
+      <%if user_signed_in? %>
+          <a href="/dashboard">My account</a>|<%= link_to " Log Out", destroy_user_session_path, :method => :delete%>
+      <% else %>
+          <%#=link_to "Sign in", new_user_session_path %>
+          <a href="#" class="topopup">Sign in</a>
+           |<!--<%=link_to "Register", new_user_registration_path, :class=>"reg" %>-->
+           <a href="#myModal_reg" role="button" class="reg" data-toggle="modal">Register</a>
+        
+      <% end %>
+    </div>
+  <!-- For Sign In Header-->
+    <div id="toPopup"> 
+    	<div class="close"></div>
+          <span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span>
+          <div id="popup_content"> <!--your content start-->
+             <h1>log In</h1> <hr>
+             <ul>
+                <li>Sign in with <%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %>
+                <%= link_to "Youtube", user_omniauth_authorize_path(:google_oauth2) %></li>
+                
+                <li>If you have a already account on this site <%= link_to "Sign In here", new_user_session_path %> </li>
+                <li>If you don't have an account <%= link_to  "click here to sign up", new_user_registration_path %> </li>
+             </ul>
+             <p>
+              
+             </p>
+             
+      </div> <!--your content end-->
+    
+    </div> <!--toPopup end-->
+      <div class="loader"></div>
+      <div id="backgroundPopup"></div>
+  
+  
+ 
+  <%=link_to videos_path, :class=> 'brand' do%>
+    <%=image_tag 'mmagaplogo.png', :style=>'width:200px'%>
+    <%end%>
+  <div style="margin-top:25px;">
+    <ul class="nav">
+      <li><%=link_to 'HOME',videos_path%></li>
+      <li><%= link_to 'TAGS', tags_path%></li>
+      <li><%=link_to 'USERS', users_path%></li>
+      <li><%= search_form_for( @search ||= Video.search(params[:q]), :html => {:method => :get , :id=> "theFieldID"} ) do |f| %>
+        <%= f.hidden_field :category_eq_any, value: "How-To" %>
+        <%= f.submit 'HOW TO', id: 'top-menu-how-to' %>
+      <% end %></li>
+    </ul>
+    <%= search_form_for @search = Video.search(params[:q]), url: videos_path do |f| %>
+      <%= f.text_field :title_cont %>
+    <% end %>
+    
+<div style="float:right; width:120px; margin-top: 3px;">
+      <div class="dropdown">
+         
+    
+  
+        <%if user_signed_in?%>
+            <a class="btn dropdown-toggle" style="background:#04C; color:white; " data-toggle="dropdown" href="#"><%=current_user.username%></a>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <li><%=link_to "#{current_user.username} Edit" , edit_user_registration_path%> <div style="float:right;"><p>0 points</p><p>5 videos</p><p>12K Views</p><p>7 comments</p></div>
+          <% if current_user.image_url %>
+            <%= image_tag current_user.image_url.to_s, :id => "comImgTop" %>
+          <% end %>
+        </li>
+        <li><%= link_to " Log Out", destroy_user_session_path, :method => :delete%></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="#myModal" role="button" class="btn" data-toggle="modal">Add Video</a></li>
+        <%else%>
+
+         <a class="btn dropdown-toggle" style="background:#04C; color:white; " data-toggle="dropdown" href="#">LOGIN</a>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li><%= link_to "Sign in", new_user_session_path%></li>
+          <li> <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
+          <li> <%= link_to "Sign in with Youtube", user_omniauth_authorize_path(:google_oauth2) %></li>
+          <li><%=link_to "Sign Up", new_user_registration_path %></li>
+        <%end%>
+        </ul>
+    </div>  </div>
+      </div>
+  </div>
+</div>
+
+  <%flash.each do |type,message|%>
+    <div class="alert <%=flash_class type%>">
+      <button class="close" data-dismiss="alert">x</button>
+      <%=message%>
+    </div>
+  <%end%>
+<div class="content">
+ 
+<!-- MODAL--> 
+<div id="myModal" class="modal hide fade videos-upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+  <script>
+    $(document).ready(function(){
+    
+    
+        $('ul#topnave li a.btn').click(function(){
+        
+          var get_title = $('li.active a').attr('class');
+          
+          
+          if (get_title =='mylogin') {
+              var category_name = $('#nav_cat').val('Lesson');
+          }else{
+            
+            var category_name = $('#nav_cat').val(get_title);  
+          }
+          
+          
+          //alert(category_name);
+        
+          $("input:radio").each(function(){
+            var name = $('input:radio').attr("name");
+            
+            if (name == 'video[category]') {
+               
+                if ($(this).val() == 'Lesson') {
+                  $(this).parent('.radio').remove()
+                  //$(this).hide()
+                }
+                
+                if ($(this).val() == $('#nav_cat').val()) {
+                  $(this).attr("checked","checked")
+                }
+                
+            }
+            
+          
+          })
+          
+            
+       
+        
+        })
+      
+    });
+  </script>  
+ 
+  
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">UPLOAD VIDEO</h3>
+  </div>
+  <div class="modal-body">
+    <p>YOU ARE SUCCESFULLY LOGGED IN</p>
+    <p>You can easily upload your video over here.</p>
+    <div id="upload_dialog"> <!-- UPLOAD VIDEO FORM -->
+  <%@video=Video.new%>
+<%= simple_form_for  @video, :html => {:multipart => true}  do |f| %>
+ <input type="hidden" name="nav_cat" id="nav_cat">
+<%=f.input :title %>
+ <div class="line">
+      <label for="tags">Tags</label>
+      <ul id="mytags"></ul>
+    </div>
+  <div class="field">
+
+  <% f.label :tag_list, "Tags (separated by commas)" %><br /> <!-- I DON'T KNOW IF WE NEED THIS -->
+  <div style="display:none;"><%= f.text_field :tag_list %></div>
+</div>
+<%=f.input :video_link%>
+Please select CATEGORY
+<%= f.input :category, :collection =>Video::CATEGORIES, :as => :radio_buttons,  :validate=> true%>
+<%= f.input :description, as: :text, required: true, input_html: { maxlength: 200 }%>
+
+
+ <label class="checkbox">
+  <input type="checkbox" id="agree_check" value="">
+  By checking this I agree with <a href="#">Terms&Conditions </a>
+</label>
+  </div> <!-- UPLOAD VIDEO FORM -->
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%=f.submit "Upload" ,:class=>"btn btn-primary", :id=> "hidden_upload", :style=> "display:none"%>
+  </div>
+</div>
+<%end%>
+</div>
+
+<!--Start Register model-->
+
+
+  <div id="myModal_reg" class="modal hide fade videos-upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
+     <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel"">Sign up</h3>
+    </div>
+    <div class="modal-body">
+      
+<link rel='stylesheet' href='js-form-validation.css' type='text/css' />
+<script src="sample-registration-form-validation.js"></script>
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true) do |f| %>
+      <%= f.error_notification %>
+      <fieldset>
+            <legend>Sign Up</legend>
+            <div class="form-inputs">
+              <%=f.input :username %>
+              <%= f.input :email %>
+              <% if f.object.password_required?  %>
+                <%= f.input :password%>
+                <%= f.input :password_confirmation %>
+              <% end %>
+              <%= f.input :image, as: :file %>
+            </div>
+            <%= f.collection_select  :membership, User::MEMBERSHIPS, :to_s, :humanize%>
+            <%= f.input :country%>
+            <%= f.input :state %>
+            <%= f.input :city %>
+            <%= f.input :address %>
+            <%= f.input :zip %>
+          <div class="field">
+            <p>
+              <%= recaptcha_tags %>
+              <%#= raw recaptcha_tags %>
+            </p>
+          </div>
+	  <div class="form-actions">
+	    <%= f.button :submit, "Sign up", :id=>"submit" %>
+	  </div>
+          
+      </fieldset>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+<!--End Register model-->
+  
+  <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <% end %>
+  
+
+<%= yield %>
+</div>
+
+<div id="footer" style="text-align:center;padding-top:50px;border-top:4px solid #555;"><a href="/aboutus">ABOUT US</a>| <a href="/help">HELP</a> | <a href="/termsofuse">TERMS OF USE</a> | <a href="/inquiries/new">CONTACT US</a></div>
+ 
+ 
+ <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+ <script>
+  $(function(){
+      var sampleTags = [<%= raw(@mytag.map(&:inspect).join(', ')) %>];
+      
+      $("#mytags").tagit({
+          availableTags: sampleTags,
+          triggerKeys:['enter', 'comma', 'tab'],
+          select:true,
+          sortable:true,
+          allowSpaces: true,
+          maxLength:5,
+          maxTags:5,
+          //autocomplete: {delay: 0, minLength: 2}
+      });
+  });
+  
+ 
+  
+</script>
+<script>
+
+$(document).ready(function(){
+
+$(".alert").delay(2000).fadeOut(2000);
+ 
+$(".video-user-small").each(function(index, value) {  //Thumbnail 
+
+$(this).find('a').append($('<img width="120px" height="80" class="tp" src="'+$.jYoutube($(this).attr("url"))+'" />')); 
+
+});
+
+
+$(".video-user").each(function(index, value) {  //Thumbnail 
+
+//$(this).append($('<img width="320px" height="240" class="tp" src="img/no_image.jpg" />')); //OFFLINE
+$(this).append($('<img width="320px" height="240" class="tp" src="'+$.jYoutube($(this).attr("url"))+'" />')); //ONLINE
+
+
+});
+
+$('a#thumb-plays').click(function(){  
+
+//WORKING MAGIC WITH OUR URL ATTRIBUTE
+var text = ($(this).parents(".video-user").attr("url")).split(/\s+/);
+for (var i = 0; i < text.length; i++) {
+    var url = text[i];
+    if (/^https?\:\/\/.+/i.test(url)) {
+        var temp = /[\?\&]v=([^\?\&]+)/.exec(url);
+        if (temp) {
+            text[i] = temp[1];
+        } else {
+            text[i] = "URL found but does not contain video id";
+        }
+    } else {
+        // other case left as an exercise
+    }
+}
+ //HIDING ALL ELEMENTS INSIDE OF (THIS) DIV
+
+//alert(text.join('\n')); //THIS ONE SHOWS ID NUMBER (JUST IN CASE)
+
+            
+            
+ $(this).parents('.video-user').append($('<iframe width="320" height="240" src="http://www.youtube.com/embed/'+text+'" frameborder="0" allowfullscreen></iframe>'));
+            
+$(this).parent().attr("class","video-user-act");
+$(this).parents(".video-user").find('img').css("display","none");
+$('#top-like-box').children().toggle();
+$(this).parents(".video-user").find('#bot-thumb-desc').css("display","none");
+
+
+//$(this).parent().css("display", "none");
+
+
+             });
+                  
+$(".sideMenu").click(function() {
+    var menu = $("#sideMenu");
+    var button = $(".sideMenu")
+    if ($(menu).is(":visible")) {
+        $(menu).animate({width: 0}, 1000, function() {$(menu).hide();});
+         $(button).animate({left: 0}, 1000);
+    } else {
+        $(menu).show().animate({width: 100}, 1000); 
+        $(button).animate({left: 100}, 1000);
+    }
+});
+
+$("#where").append($(".nav-tabs").find("li.active").find('a').html());
+      
+   
+});
+
+$(document).click(function(){
+$("#where").html("");
+$("#where").append($(".nav-tabs").find("li.active").find('a').html()).hide().fadeIn(1000);
+$("#video_tag_list").val($(":input[name='tags']").map(function () { return $(this).val(); }).get())
+//$("#video_tag_list").val($(":input[name='item[tags][]']").map(function () { return $(this).val(); }).get())
+$("#video_tag_list").val($(":input[name='tags']").map(function () { return $(this).val(); }).get())
+
+});
+
+$('.dropdown').click(function(){$('.dropdown-menu').toggle()})
+
+
+</script>
+            
+<script>
+$('#agree_check').click(function(){
+  $('#hidden_upload').slideToggle('slow');
+});
+$('#agree_check1').click(function(){
+  $('#hidden_upload1').slideToggle('slow');
+});
+</script>
+
+<script>
+  $('a#sign_in_popup').click(function(){
+   $('#div_sign_popup').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+            speed: 450,
+            transition: 'slideDown'
+        })
+    });
+  
+</script>
+</body>
+</html>

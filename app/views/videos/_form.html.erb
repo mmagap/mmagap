@@ -1,0 +1,39 @@
+
+<%= simple_form_for @video  do |f| %>
+  <% if @video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+
+      <ul>
+      <% @video.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="line">
+      <label for="tags">Tags</label>
+      <ul id="mytags"></ul>
+    </div>
+  <div class="field">
+
+  <%= f.label :tag_list, "Tags (separated by commas)" %><br /> <!-- I DON'T KNOW IF WE NEED THIS -->
+  <div style="display:block;"><%= f.text_field :tag_list %></div>
+</div>
+  <div class="field">
+    <%= f.label :video_link %><br />
+    <%= f.text_field :video_link, as: :hidden%>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, as: :hidden%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

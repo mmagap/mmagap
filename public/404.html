@@ -1,0 +1,657 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta property="og:image" content="http://www.fightgap.com/img/logo.png">
+<meta property="og:tag name" content="FightGap"> 
+<meta property="og:title" content="FightGap"> 
+<meta property="og:type" content="Website"> 
+<meta property="og:site_name" content="FightGap"> 
+<meta property="fb:app_id" content="227299370679781">
+<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+<title>FightGap</title>
+
+  <script id="twitter-wjs" src="//platform.twitter.com/widgets.js"></script><script id="facebook-jssdk" async="" src="//connect.facebook.net/en_US/all.js"></script><script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript" src="/js/jquery-1.5.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/invite.css"><link rel="stylesheet" type="text/css" href="/css/modal_style.css">
+  <script type="text/javascript" src="/js/modal_window.js"></script>
+
+  <script type="text/javascript" src="/js/myfunctions.js"></script>
+<style type="text/css">
+.forgot{
+  color:#000;
+  text-decoration:none;
+}
+.forgot a{
+  color:#000;
+  text-decoration:none;
+}
+.forgot a hover {
+  color:#F00;
+  text-decoration:underline;
+}
+</style>
+<script type="text/javascript">
+/*************************************************************************************************************************************************/
+//function to remember the user name and password when click on the remember in the login page
+function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++)
+  {
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+
+function setCookie(c_name,value,exdays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate() + exdays);
+var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+document.cookie=c_name + "=" + c_value;
+}
+
+
+function getmycookie()
+{
+document.getElementById('ch_email').value=getCookie("username")==undefined?'':getCookie("username");
+document.getElementById('ch_password').value=getCookie("password")==undefined?'':getCookie("password");
+
+if(document.getElementById('ch_password').value==getCookie("password")){
+  
+document.getElementById('rem').checked=true;
+}
+}
+/****************************************************************************************************************************************************/
+
+</script>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30687221-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border-spacing:0;border:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/y6/x/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/y6/x/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yA/x/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/y6/x/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+/* @noflip */
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+/* @noflip */
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yR/x/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yD/x/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;left:-10000px;overflow:visible;position:absolute;top:-10000px;width:100%
+}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yc/x/3rhSv5V8j3o.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0 0, 0 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0 0, 0 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yJ/x/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{position:relative;display:-moz-inline-block;display:inline-block}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify;vertical-align:text-bottom}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_fluid span{width:100%}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yJ/x/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_button_simple,
+.fb_button_simple_rtl{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yH/x/eIpbnVKI9lR.png);background-repeat:no-repeat;cursor:pointer;outline:none;text-decoration:none}
+.fb_button_simple_rtl{background-position:right 0}
+.fb_button_simple .fb_button_text{margin:0 0 0 20px;padding-bottom:1px}
+.fb_button_simple_rtl .fb_button_text{margin:0 10px 0 0}
+a.fb_button_simple:hover .fb_button_text,
+a.fb_button_simple_rtl:hover .fb_button_text,
+.fb_button_simple:hover .fb_button_text,
+.fb_button_simple_rtl:hover .fb_button_text{text-decoration:underline}
+.fb_button,
+.fb_button_rtl{background:#29447e url(http://static.ak.fbcdn.net/rsrc.php/v2/yl/x/FGFbc80dUKj.png);background-repeat:no-repeat;cursor:pointer;display:inline-block;padding:0 0 0 1px;text-decoration:none;outline:none}
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text{background:#5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v2/yl/x/FGFbc80dUKj.png);border-top:solid 1px #879ac0;border-bottom:solid 1px #1a356e;color:#fff;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-weight:bold;padding:2px 6px 3px 6px;margin:1px 1px 0 21px;text-shadow:none}
+a.fb_button,
+a.fb_button_rtl,
+.fb_button,
+.fb_button_rtl{text-decoration:none}
+a.fb_button:active .fb_button_text,
+a.fb_button_rtl:active .fb_button_text,
+.fb_button:active .fb_button_text,
+.fb_button_rtl:active .fb_button_text{border-bottom:solid 1px #29447e;border-top:solid 1px #45619d;background:#4f6aa3;text-shadow:none}
+.fb_button_xlarge,
+.fb_button_xlarge_rtl{background-position:left -60px;font-size:24px;line-height:30px}
+.fb_button_xlarge .fb_button_text{padding:3px 8px 3px 12px;margin-left:38px}
+a.fb_button_xlarge:active{background-position:left -99px}
+.fb_button_xlarge_rtl{background-position:right -268px}
+.fb_button_xlarge_rtl .fb_button_text{padding:3px 8px 3px 12px;margin-right:39px}
+a.fb_button_xlarge_rtl:active{background-position:right -307px}
+.fb_button_large,
+.fb_button_large_rtl{background-position:left -138px;font-size:13px;line-height:16px}
+.fb_button_large .fb_button_text{margin-left:24px;padding:2px 6px 4px 6px}
+a.fb_button_large:active{background-position:left -163px}
+.fb_button_large_rtl{background-position:right -346px}
+.fb_button_large_rtl .fb_button_text{margin-right:25px}
+a.fb_button_large_rtl:active{background-position:right -371px}
+.fb_button_medium,
+.fb_button_medium_rtl{background-position:left -188px;font-size:11px;line-height:14px}
+a.fb_button_medium:active{background-position:left -210px}
+.fb_button_medium_rtl{background-position:right -396px}
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text{padding:2px 6px 3px 6px;margin-right:22px}
+a.fb_button_medium_rtl:active{background-position:right -418px}
+.fb_button_small,
+.fb_button_small_rtl{background-position:left -232px;font-size:10px;line-height:10px}
+.fb_button_small .fb_button_text{padding:2px 6px 3px;margin-left:17px}
+a.fb_button_small:active,
+.fb_button_small:active{background-position:left -250px}
+.fb_button_small_rtl{background-position:right -440px}
+.fb_button_small_rtl .fb_button_text{padding:2px 6px;margin-right:18px}
+a.fb_button_small_rtl:active{background-position:right -458px}
+.fb_share_count_wrapper{position:relative;float:left}
+.fb_share_count{background:#b0b9ec none repeat scroll 0 0;color:#333;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.fb_share_count_inner{background:#e8ebf2;display:block}
+.fb_share_count_right{margin-left:-1px;display:inline-block}
+.fb_share_count_right .fb_share_count_inner{border-top:solid 1px #e8ebf2;border-bottom:solid 1px #b0b9ec;margin:1px 1px 0 1px;font-size:10px;line-height:10px;padding:2px 6px 3px;font-weight:bold}
+.fb_share_count_top{display:block;letter-spacing:-1px;line-height:34px;margin-bottom:7px;font-size:22px;border:solid 1px #b0b9ec}
+.fb_share_count_nub_top{border:none;display:block;position:absolute;left:7px;top:35px;margin:0;padding:0;width:6px;height:7px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yP/x/bSOHtKbCGYI.png)}
+.fb_share_count_nub_right{border:none;display:inline-block;padding:0;width:5px;height:10px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/x/i_oIVTKMYsL.png);vertical-align:top;background-position:right 5px;z-index:10;left:2px;margin:0 2px 0 0;position:relative}
+.fb_share_no_count{display:none}
+.fb_share_size_Small .fb_share_count_right .fb_share_count_inner{font-size:10px}
+.fb_share_size_Medium .fb_share_count_right .fb_share_count_inner{font-size:11px;padding:2px 6px 3px;letter-spacing:-1px;line-height:14px}
+.fb_share_size_Large .fb_share_count_right .fb_share_count_inner{font-size:13px;line-height:16px;padding:2px 6px 4px;font-weight:normal;letter-spacing:-1px}
+.fb_share_count_hidden .fb_share_count_nub_top,
+.fb_share_count_hidden .fb_share_count_top,
+.fb_share_count_hidden .fb_share_count_nub_right,
+.fb_share_count_hidden .fb_share_count_right{visibility:hidden}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+/* @noflip */
+.fbpluginrecommendationsbarleft{left:10px}
+/* @noflip */
+.fbpluginrecommendationsbarright{right:10px}</style></head><div style="display: none;" id="Kt3qBnk3keRh5Atp4oDzzeB" class="XrDJ5Q2Yv4BPFIuHfHHqcflrET"></div><div style="display: none;" id="Wp9se8hHcKEVq6QhjbTShHgg" class="XrDJ5Q2Yv4BPFIuHfHHqcflrET"></div><div style="display: none;" id="TFKX6TTTMx91iiBszlIFlc" class="XrDJ5Q2Yv4BPFIuHfHHqcflrET"></div>
+<body onload="getmycookie();" data-twttr-rendered="true">
+<div id="container" style="float:left;">
+  <!--Signin popup ******** -->
+  <div id="boxes">
+    <div id="dialog" class="window"> <a id="modelbox-close" style="display: inline;" href="#" class="close"></a>
+      <div id="coachme_msg">Message Here !</div>
+      <div id="ch_signin" class="lightbox">
+        <!-- This section is used to show popUp sigin at Upload Video Page --->
+        <h2>Sign In</h2>
+        <div class="coachmesec">
+          <div class="signinform" style="border-right:none;"> <form action="/users/invite" id="frmpopadd" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"></div>            <p>
+              <label style="width:104px;">Email:</label>
+              <!-- Username/ -->
+              <input name="data[User][users_email]" type="text" id="ch_email" maxlength="50"> </p>
+            <p>
+              <label style="width:104px;">Password:</label>
+              <input type="password" name="data[User][users_pass12]" id="ch_password" maxlength="15"> </p>
+            <p>
+            </p><div style="float:right; width:200px; margin-right: -5px;">
+              <input type="checkbox" name="Rem" id="rem" value="1" style="width:auto;">
+              &nbsp;Remember Me</div>
+            <p></p>
+            <p>
+              <label style="width:104px;"></label>
+            </p><div class="justbutton"> <a id="ch_signinbt" href="javascript:void(0);" class="choosemyvideobtn" onclick="return login();">Sign In</a>
+             <a id="ch_signinbt2" href="javascript:void(0);" class="choosemyvideobtn" style="display:none;" onclick="return login();">Sign In</a> </div>
+            <input type="hidden" name="data[User][users_pass13]" id="ch_secflag" value=""> <input type="hidden" name="data[User][showoff_flagss]" id="showoff_flagss">            <p></p>
+            </form>            <div style="float:left; padding-top:3px;"><p class="forgot"><a id="ch_siginbtns" class="forgot" href="#dialogs" name="modal" onclick="password();">Forgot Password</a></p></div>
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+        <div id="signin_errormsg" class="message"></div>
+       
+      </div>
+    </div>
+    <!-- Do not remove div#mask, because you'll need it to fill the whole screen -->
+    <div id="mask"></div>
+  </div>
+  <!------ FORGOT PASSWORD POPUP ------->
+  <div id="boxes">
+  <div id="dialogs" class="window">   
+    <a id="modelbox-close" style="display: inline;" href="#" class="close"></a>
+        <div id="tabcontent1" class="tabcontent"></div>
+    <!--<span id="forgot_span" style="color:#F00;padding-left:5px;"></span>-->
+    <div id="ch_signins" class="lightbox"><!-- This section is used to show popUp sigin at Upload Video Page --->
+    <h2>Forgot Password</h2>    
+    <div class="coachmesec">    
+    <div class="signinform" style="border-right:none;">
+        
+    <form name="forgotpassword" id="forgotpassword" method="post">
+            <div class="field_row">
+              <label>Email :</label>
+              <input type="text" id="forgot_email" value="" name="data[User][forgot_email]forgot_email">
+            </div>
+            <p style="width: 200px; padding: 5px; float: left;">
+              <input type="button" style="width: auto; float: right;" onclick="javascript:forgotpasswordfunc();" value="Submit" name="submit" id="submit">
+            </p>
+          </form>
+         <div style="float:left; text-align:center; width:355px;"> <span id="forgot_span" style="color:#F00;"></span> </div>
+    </div>
+    </div>
+    <div style="clear:both;"></div>
+    <div id="signin_errormsgs" class="message"></div>
+
+
+  </div>
+  </div>
+  <!-- Do not remove div#mask, because you'll need it to fill the whole screen --> 
+  <div id="mask"></div>
+</div>
+  <!------ END OF FORGOT PASSWORD POPUP ------->
+</div>
+<!--- *** POPUp Ends *** ---->
+<div class="header">
+  <div id="wrapper">
+    <div class="logo"><img src="/invite/logo.png" width="336" height="122"></div>
+    <div class="login">
+      <p>I already have an account</p>
+      <a id="ch_siginbtn" href="#dialog" name="modal" onclick="signin();">
+      <input type="button" value="log in">
+      </a> </div>
+  </div>
+</div>
+<div class="contentArea">
+  <div id="wrapper">
+    <!-- start content left section -->
+    <div class="contentL">
+      <h2>Get an unfair advantage over other fighters</h2>
+      <p>Get personalized feedback from the world class coaches. See other athletes perform the exact skills you want. Shock the world with your talents.</p>
+      <div class="signup">
+                <h3>Sign up today and get the advantage before everyone</h3>
+        <p id="myinvitediv"> </p><form action="/pages/invite" id="frmmyinvite" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"></div> <input name="data[Pages][myemail]" type="text" id="myinvitemail" value="Email address"><br>
+          <input id="myinvitebtn" class="invite" type="submit" value="invite me"> </form> <p></p>
+        <div class="like_tweet" style="padding-left:27px">
+         <!-- <div id="fb-root"></div>
+         <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=253212578082977";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>-->
+
+    <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" style="border: none;" src="http://static.ak.facebook.com/connect/xd_arbiter.php?version=18#channel=f1e80fe024&amp;origin=http%3A%2F%2Fmmagap.com&amp;channel_path=%2Fpages%2Finvite%3Ffb_xd_fragment%23xd_sig%3Df475dea98%26"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" style="border: none;" src="https://s-static.ak.facebook.com/connect/xd_arbiter.php?version=18#channel=f1e80fe024&amp;origin=http%3A%2F%2Fmmagap.com&amp;channel_path=%2Fpages%2Finvite%3Ffb_xd_fragment%23xd_sig%3Df475dea98%26"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="f1a6b5782c" frameborder="0" allowtransparency="true" scrolling="no" style="display: none;" src="https://www.facebook.com/dialog/oauth?client_id=227299370679781&amp;response_type=token%2Csigned_request%2Ccode&amp;display=none&amp;domain=mmagap.com&amp;origin=1&amp;redirect_uri=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D18%23cb%3Df21ca6c60%26origin%3Dhttp%253A%252F%252Fmmagap.com%252Ff1e80fe024%26domain%3Dmmagap.com%26relation%3Dparent&amp;sdk=joey"></iframe></div></div></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '227299370679781', // App ID
+      channelUrl : '//www.fightgap.com/pages/invite', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional initialization code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
+         
+          
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          <div style="width: 210px; float: left; margin-left: 38px;">
+            <div class="fb-like fb_edge_widget_with_comment fb_iframe_widget" style="float: left; width: 120px;" data-href="http://www.fightgap.com/" data-send="true" data-layout="button_count" data-width="90" data-show-faces="false" fb-xfbml-state="rendered"><span style="height: 20px; width: 126px;"><iframe id="f30bff271" name="f31e3079bc" scrolling="no" style="border: none; overflow: hidden; height: 20px; width: 126px;" title="Like this content on Facebook." class="fb_ltr" src="http://www.facebook.com/plugins/like.php?api_key=227299370679781&amp;locale=en_US&amp;sdk=joey&amp;channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D18%23cb%3Df2188f824c%26origin%3Dhttp%253A%252F%252Fmmagap.com%252Ff1e80fe024%26domain%3Dmmagap.com%26relation%3Dparent.parent&amp;href=http%3A%2F%2Fwww.fightgap.com%2F&amp;node_type=link&amp;width=150&amp;layout=button_count&amp;colorscheme=light&amp;show_faces=false&amp;send=true&amp;extended_social_context=false"></iframe></span></div>
+            <div><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1359159993.html#_=1359695131871&amp;count=none&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fmmagap.com%2Fpages%2Finvite&amp;size=m&amp;text=FightGap&amp;url=http%3A%2F%2Fmmagap.com%2Fpages%2Finvite" class="twitter-share-button twitter-count-none" style="width: 59px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end content left section -->
+    <!-- start content right section -->
+    <div class="contentR">
+      <div class="recordYourself">
+        <div class="stepsimg"><img src="/invite/recordYourselfInAction.png"></div>
+        <div class="steps"><img src="/invite/1.png" width="51" height="51"></div>
+        <div class="desc">Record yourself in action</div>
+      </div>
+      <div class="recordYourself">
+        <div class="stepsimg"><img src="/invite/worldClassCoaching.png"></div>
+        <div class="steps"><img src="/invite/2.png" width="51" height="51"></div>
+        <div class="desc">Get free world-class coaching</div>
+      </div>
+      <div class="recordYourself">
+        <div class="stepsimg"><img src="/invite/winandDazzle.png"></div>
+        <div class="steps"><img src="/invite/3.png" width="51" height="51"></div>
+        <div class="desc">Win and dazzle</div>
+      </div>
+    </div>
+    <!-- end content right section -->
+  </div>
+</div>
+<div class="strip">
+  <div id="wrapper"> </div>
+</div>
+<div class="services">
+  <div id="wrapper">
+    <div class="serviceGroup">
+      <div class="serviceSection"> <img src="/invite/worldClassFighters.png" width="103" height="100">
+        <h2>World Class Fighters</h2>
+        <ul>
+          <li>- <!--<a href="javascript:void(0);"></a>-->Share videos of yourself in action with a community of athletes</li>
+          <li>- Learn the secret tricks of your idols </li>
+          <li>- Get feedback from semi-pros and pros</li>
+        </ul>
+      </div>
+      <div class="serviceSection"> <img src="/invite/topCoaches.png">
+        <h2>Top Coaches</h2>
+        <ul>
+          <li>- Expand your revenues</li>
+          <li>- Build a global online reputation</li>
+          <li>- Share instructional videos that under-score your unique teaching talents</li>
+        </ul>
+      </div>
+      <div class="serviceSection" style="margin:0;"> <img src="/invite/goFortheGold.png">
+        <h2>Go for the Gold</h2>
+        <ul>
+          <li>- Have a secret advantage at no cost </li>
+          <li>- Showcase your awesome skills </li>
+          <li>- Gain a global reputation among the athletes in many countries</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div id="wrapper">
+    <div class="contact">CONTACT US <a href="mailto:general@fightgap.com" style="text-decoration:none; color:#BD0100;">general@fightgap.com</a></div>
+    <!--<div class="connected">
+  <ul>
+  STAY CONNECTED
+  <li><img src="invite/twitter.png" width="17" height="18"></li>
+  <li><img src="invite/facebook.png" width="17" height="18"></li>
+  <li><img src="invite/linkedIn.png" width="17" height="18"></li>
+  <li><img src="invite/rss.png" width="17" height="18"></li>
+  </ul>
+  </div>-->
+  </div>
+</div>
+
+<script>
+/**  FUNCTION TO DELETE THE COOKIE**/
+function del_cookie(username) { 
+document.cookie = username +
+'=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+return true;
+}//END OF FUNCTION
+
+  //************To Send Invite Request To Admin *****
+$('#myinvitemail').focus(function(){
+  if($('#myinvitemail').val()=="Email address")
+    $('#myinvitemail').val('');
+});
+$('#myinvitebtn').click(function(){
+  if($('#myinvitemail').val()=="Email address" || $('#myinvitemail').val()==""){
+    alert("Please Enter Your Email Id");
+    $('#myinvitemail').val('');
+    $('#myinvitemail').focus();
+    return false;
+  } else{
+    if(checkmymail1($('#myinvitemail').val())==false){
+      alert("Please Enter Valid Email Id");
+      return false;
+    }
+  }
+});
+function signin(){
+  document.getElementById('dialog').style.display='';
+  document.getElementById('ch_signin').style.display='block';
+//  alert('hey');
+  //window.location.href="/users/login";
+  
+  //var id = "#dialog";
+  //var maskHeight = $(document).height();
+  //var maskWidth = $(window).width();  
+  //$('#mask').css({'width':maskWidth,'height':maskHeight});       
+  //$('#mask').fadeIn(1000);    
+  //$('#mask').fadeTo("slow",0.8);  
+  //var winH = $(window).height();
+  //var winW = $(window).width(); 
+  //$(id).css('top',  winH/2-$(id).height()/2);
+  //$(id).css('left', winW/2-$(id).width()/2);
+  //$(id).fadeIn(2000);
+  //document.getElementById('coachme_msg').style.display='none';
+  //document.getElementById('ch_upvideo').style.display='none';
+  //document.getElementById('ch_coach').style.display='none';
+  //document.getElementById('ch_invite').style.display='none';
+  
+}
+/*$('#ch_signinbt').click(
+});*/
+$('#ch_password').keypress(function(event){   
+    var keycode = (event.keyCode ? event.keyCode : event.which);    
+    if(keycode=="13"){
+      var val1=$(this).val();
+      login();
+    }  
+  });
+
+function login(){ 
+  //****when signin button is clicked at POPUP at video_upload Page
+  $("#signin_errormsg").html('');
+  var visitor_video=false;
+  var flagu="y";
+//  var showoff=$('#showoff_flagss').val();
+  if(flagu=="y")
+    visitor_video=true;  //** a video Uploading has done by visitor at video_upload page
+
+  if($('#ch_email').val()!=""){ 
+    var str = $('#ch_email').val();
+    var pass = $('#ch_password').val();
+    var rem = document.getElementById('rem').checked;
+    
+    pass = "AB80123"+pass+"075HH81PP0";
+    
+/**************************************************************/
+//setting a cookie for the user name and password at the time of login
+if(rem==true){ //alert("hello 1"); 
+var username=getCookie("username");
+//var email= document.getElementById('ch_email').value;
+//var username=getCookie("email");
+//alert(username);
+if (username!=null && username!="")
+  {
+ // alert("Welcome again " + username);
+  document.getElementById('ch_email').value = username;
+  document.getElementById('ch_password').value = password;
+//  alert(document.getElementById('ch_email').value);
+  }
+else 
+  {
+    //username=prompt("Please enter your name:","");
+ var username= document.getElementById('ch_email').value;
+ var password= document.getElementById('ch_password').value;
+ //alert("user"+username);
+  if (username!=null && username!="")
+    {
+    setCookie("username",username,365);
+  setCookie("password",password,365);
+    }
+  }
+
+}else{
+    del_cookie();
+  }
+/**************************************************************/
+    
+    // Trigger AJAX request
+    $.ajax( 
+    { 
+        type: "POST",
+        data: "&uname="+str+"&pswd="+pass+"&flag="+flagu,
+        url: "/users/ajax_login",
+        cache: false,
+        async: false,
+        success: function(message) 
+        { 
+      $("#suggest").empty(); 
+      if(message.length > 0)
+      {   
+          if(message>0){ 
+        //** Username password match Login sucess
+          //  window.location.href = "/";
+          window.location.href = "http://108.166.119.46/projects/FightGap/";
+        } else{       
+          $("#signin_errormsg").html(message); 
+        }
+      } 
+        } 
+    });
+
+      }
+    else
+    {
+      $("#signin_errormsg").html("Please enter your email and password"); 
+    }}
+function checkmymail1(val1){ 
+  //************perfect with all validations including*************************
+  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  var address=val1;
+  if(reg.test(address) == false) {    
+  return false;
+  }
+  if (address.indexOf('@.',0) != -1) {    
+  return false;
+  }
+  if (address.indexOf('.@',0) != -1) {    
+  return false;
+  }
+  if (address.indexOf('..',0) != -1) {    
+  return false;
+  }
+  var suffix =address.substring(address.lastIndexOf('.')+1);
+  if (suffix.length != 2 && suffix != 'com' && suffix != 'net' && suffix != 'org' && suffix != 'edu' && suffix != 'int' && suffix != 'mil' && suffix != 'gov' & suffix != 'arpa' && suffix != 'biz' && suffix != 'aero' && suffix != 'name' && suffix != 'coop' && suffix != 'info' && suffix != 'pro' && suffix != 'museum') {   
+  return false;
+  }
+return true;  
+}
+
+
+/******** forgot password scripts ************/
+function password(){
+  document.getElementById('dialogs').style.display='';
+  document.getElementById('ch_signins').style.display='block';
+}
+
+//function for the gorgot password
+function forgotpasswordfunc()
+{
+  
+  var forgot_email = document.getElementById("forgot_email").value;
+  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+
+  if(reg.test(forgot_email) == false)
+  {
+    document.getElementById("forgot_email").value="";
+    document.getElementById("forgot_email").focus();
+    document.getElementById("forgot_span").innerHTML="Invalid Email Address";
+    return false;
+  }else{
+    var pasword='2899f355f2bf9867ae6fded7ccd69b1d32f0c88e';
+    var pwd='test123';
+//alert(pasword);
+//return false;
+
+    document.getElementById("forgot_span").innerHTML="Processing...";
+    $.post("/seeker_forgotpassword.php", { forgot_email:forgot_email, pasword:pasword, pwd:pwd },
+    function(data) {
+    document.getElementById("forgot_span").innerHTML=data;
+    });
+  }
+}//end of function
+
+</script>
+
+</body></html>

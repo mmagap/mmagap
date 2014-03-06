@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mmagap</title>
+
+  <%= javascript_include_tag 'responce' %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %> 
+    
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+
+<!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="//cdn.pandastream.com/u/2.0/panda-uploader.min.js"></script>
+
+<style>
+      
+      .td-filename {
+        width: 400px;
+      }
+      .td-filesize {
+        width: 40px;
+      }
+      .td-progress {
+        width: 300px;
+      }
+
+      .td-action .btn {
+        width: 75px;
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+
+    </style>
+
+</head>
+    
+
+<body>
+
+<div class="navbar ">
+  <div class="navbar-inner sqora">
+   <%=link_to videos_path, :class=> 'brand' do%>
+    <%=image_tag 'mmagaplogo.png', :style=>'width:200px'%>
+    <%end%>
+  <div style="margin-top:25px;">
+    <ul class="nav">
+      <li><%=link_to 'HOME',videos_path%></li>
+      <li><%= link_to 'TAGS', tags_path%></li>
+      <li><%=link_to 'USERS', users_path%></li>
+      <li><%= search_form_for( @search ||= Video.search(params[:q]), :html => {:method => :get , :id=> "theFieldID"} ) do |f| %>
+        <%= f.hidden_field :category_eq_any, value: "How-To" %>
+        <%= f.submit 'HOW TO', id: 'top-menu-how-to' %>
+      <% end %></li>
+    </ul>
+    <%= search_form_for @search = Video.search(params[:q]), url: videos_path do |f| %>
+      <%= f.text_field :title_cont %>
+    <% end %>
+    
+<div style="float:right; width:120px; margin-top: 3px;">
+      <div class="dropdown">
+         
+    
+  
+        <%if user_signed_in?%>
+            <a class="btn dropdown-toggle" style="background:#04C; color:white; " data-toggle="dropdown" href="#"><%=current_user.username%></a>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <li><%=link_to "#{current_user.username} Edit" , edit_user_registration_path%> <div style="float:right;"><p>0 points</p><p>5 videos</p><p>12K Views</p><p>7 comments</p></div>
+          <% if current_user.image_url %>
+            <%= image_tag current_user.image_url.to_s, :id => "comImgTop" %>
+          <% end %>
+        </li>
+        <li><%= link_to " Log Out", destroy_user_session_path, :method => :delete%></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="#myModal" role="button" class="btn" data-toggle="modal">Add Video</a></li>
+        <%else%>
+
+         <a class="btn dropdown-toggle" style="background:#04C; color:white; " data-toggle="dropdown" href="#">LOGIN</a>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <li><%= link_to "Sign in", new_user_session_path%></li>
+        <li> <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
+        <li> <%= link_to "Sign in with Youtube", user_omniauth_authorize_path(:youtube) %></li>
+        <li><%=link_to "Sign Up", new_user_registration_path %></li>
+        
+
+
+
+        <%end%>
+        </ul>
+    </div>  </div>
+      </div>
+  </div>
+</div>
+
+<%flash.each do |type,message|%>
+  <div class="alert <%=flash_class type%>">
+    <button class="close" data-dismiss="alert">x</button>
+    <%=message%>
+  </div>
+<%end%>
+<div class="content">
+
+<!-- MODAL--> 
+<div id="myModal" class="modal hide fade videos-upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">UPLOAD VIDEO</h3>
+  </div>
+  <div class="modal-body">
+    <p>YOU ARE SUCCESFULLY LOGGED IN</p>
+    <p>You can easily upload your video over here.</p>
+    <div id="upload_dialog"> <!-- UPLOAD VIDEO FORM -->
+  <%@video=Video.new%>
+  <%= simple_form_for  @video, :html => {:multipart => true}  do |f| %>
+      <%=f.input :title%>
+       <div class="line">
+            <label for="tags">Tags</label>
+            <ul id="mytags"></ul>
+          </div>
+        <div class="field">
+      
+        <% f.label :tag_list, "Tags (separated by commas)" %><br /> <!-- I DON'T KNOW IF WE NEED THIS -->
+        <div style="display:none;"><%= f.text_field :tag_list %></div>
+      </div>
+      <%=f.input :video_link%>
+      Please select CATEGORY
+      <%= f.input :category, :collection =>Video::CATEGORIES, :as => :radio_buttons,  :validate=> true%>
+      <%= f.input :description, as: :text, required: true, input_html: { maxlength: 200 }%>
+      
+      
+       <label class="checkbox">
+        <input type="checkbox" id="agree_check" value="">
+        By checking this I agree with <a href="#">Terms&Conditions </a>
+      </label>
+        </div> <!-- UPLOAD VIDEO FORM -->
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <%=f.submit "Upload" ,:class=>"btn btn-primary", :id=> "hidden_upload", :style=> "display:none"%>
+        </div>
+      </div>
+  <%end%>
+</div>
+
+<!-- Lesson MODAL--> 
+<div id="lession_model" class="modal hide fade videos-upload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">UPLOAD VIDEO</h3>
+  </div>
+  <div class="modal-body">
+    <p>YOU ARE SUCCESFULLY LOGGED IN</p>
+    <p>You can easily upload your video over here.</p>
+    <div id="upload_dialog"> <!-- UPLOAD VIDEO FORM -->
+  <%@video=Video.new%>
+  
+  <%= simple_form_for  @video,  :html => {:multipart => true}  do |f| %>
+    <input type="hidden" name="video[category" value="Lesson" >
+    <input type="hidden" name="video[panda_video_id]" id="panda_video_id" />
+
+    <%=f.input :title%>
+  
+    <div class="line">
+      <label for="tags">Tags</label>
+      <ul id="mytags1"></ul>
+    </div>
+    <div class="field">
+
+      <% f.label :tag_list, "Tags (separated by commas)" %><br /> <!-- I DON'T KNOW IF WE NEED THIS -->
+      <div style="display:none;"><%= f.text_field :tag_list %></div>
+    </div>
+  
+    <%= f.input :description, as: :text, required: true, input_html: { maxlength: 200 }%>
+  
+    <div class="field">
+      <div class='progress progress-striped progress-success active'>
+          <span id="progress-bar" class='bar'></span>
+      </div>
+      <div class='btn-toolbar'>
+        <div id='browse-files' class='btn btn-primary btn-success'><span>Choose file</span></div>
+        <button id='cancel-button' class='btn btn-danger'>Cancel</button>
+      </div>
+  
+      <div class="well well-large" id="drop-file">
+        Drop files here
+      </div>
+    
+    </div>
+ 
+    <label class="checkbox">
+     <input type="checkbox" id="agree_check1" value="">
+     By checking this I agree with <a href="#">Terms&Conditions </a>
+   </label>
+ 
+  </div> <!-- UPLOAD VIDEO FORM -->
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%=f.submit "Upload" ,:class=>"btn btn-primary", :id=> "hidden_upload1", :style=> "display:none"%>
+  </div>
+</div>
+<%end%>
+
+
+<script>
+
+$('#cancel-button').click(function(e){
+  uploader.cancel(uploader.getQueuedFiles()[0]);
+  e.preventDefault();
+})
+
+var uploader = panda.uploader.init({
+  'buttonId': 'browse-files',
+  'fileDropId': 'drop-file',
+  'progressBarId': 'progress-bar',
+  'maxFileSize': '10MB',
+  'confirmBeforeUnload': true,
+  'authorizeUrl': '@Url.Action("postprocess","videos")',
+  'onQueue': function(files) {
+    $.each(files, function(i, file) {
+      uploader.setPayload(file, {'csrf': "<%= form_authenticity_token %>"});
+    })
+  },
+  'onSuccess': function(file, data) {
+   
+    $("#panda_video_id").val(data.id)
+  },
+  'onComplete': function(){
+    if($("#panda_video_id").val())
+      $("#new_video").submit();
+  },
+  'onError': function(file, message) {
+    alert(message);
+  },
+  'onCancel': function(file) {
+    uploader.setProgress(0);
+  }
+});
+
+</script>
+</div>
+
+
+
+<%= yield %>
+</div>
+<div id="footer" style="text-align:center;padding-top:50px;border-top:4px solid #555;"><a href="/aboutus">ABOUT US</a>| <a href="/help">HELP</a> | <a href="/termsofuse">TERMS OF USE</a> | <a href="/contactus">CONTACT US</a></div>
+ 
+ 
+ <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+<script>
+
+$(document).ready(function(){
+
+  
+    $("#mytags").tagit({
+      availableTags: ["mma", "karate", "karatedo", "taekvando", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl"]
+    });
+    
+    $("#mytags1").tagit({
+      availableTags: ["mma", "karate", "karatedo", "taekvando", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl"]
+    });
+  
+  
+
+ $(".alert").delay(2000).fadeOut(2000);
+ 
+$(".video-user-small").each(function(index, value) {  //Thumbnail 
+
+$(this).find('a').append($('<img width="120px" height="80" class="tp" src="'+$.jYoutube($(this).attr("url"))+'" />')); 
+
+
+
+
+
+});
+
+
+$(".video-user").each(function(index, value) {  //Thumbnail 
+
+//$(this).append($('<img width="320px" height="240" class="tp" src="img/no_image.jpg" />')); //OFFLINE
+$(this).append($('<img width="320px" height="240" class="tp" src="'+$.jYoutube($(this).attr("url"))+'" />')); //ONLINE
+
+
+});
+
+             $('a#thumb-plays').click(function(){  
+
+//WORKING MAGIC WITH OUR URL ATTRIBUTE
+var text = ($(this).parents(".video-user").attr("url")).split(/\s+/);
+for (var i = 0; i < text.length; i++) {
+    var url = text[i];
+    if (/^https?\:\/\/.+/i.test(url)) {
+        var temp = /[\?\&]v=([^\?\&]+)/.exec(url);
+        if (temp) {
+            text[i] = temp[1];
+        } else {
+            text[i] = "URL found but does not contain video id";
+        }
+    } else {
+        // other case left as an exercise
+    }
+}
+ //HIDING ALL ELEMENTS INSIDE OF (THIS) DIV
+
+//alert(text.join('\n')); //THIS ONE SHOWS ID NUMBER (JUST IN CASE)
+
+            
+            
+ $(this).parents('.video-user').append($('<iframe width="320" height="240" src="http://www.youtube.com/embed/'+text+'" frameborder="0" allowfullscreen></iframe>'));
+            
+$(this).parent().attr("class","video-user-act");
+$(this).parents(".video-user").find('img').css("display","none");
+$('#top-like-box').children().toggle();
+$(this).parents(".video-user").find('#bot-thumb-desc').css("display","none");
+
+
+//$(this).parent().css("display", "none");
+
+
+             });
+                  
+$(".sideMenu").click(function() {
+    var menu = $("#sideMenu");
+    var button = $(".sideMenu")
+    if ($(menu).is(":visible")) {
+        $(menu).animate({width: 0}, 1000, function() {$(menu).hide();});
+         $(button).animate({left: 0}, 1000);
+    } else {
+        $(menu).show().animate({width: 100}, 1000); 
+        $(button).animate({left: 100}, 1000);
+    }
+});
+
+$("#where").append($(".nav-tabs").find("li.active").find('a').html());
+      
+   
+});
+
+$(document).click(function(){
+$("#where").html("");
+$("#where").append($(".nav-tabs").find("li.active").find('a').html()).hide().fadeIn(1000);
+$("#video_tag_list").val($(":input[name='item[tags][]']").map(function () { return $(this).val(); }).get())
+
+});
+
+$('.dropdown').click(function(){$('.dropdown-menu').toggle()})
+
+
+</script>
+            
+            <script>
+$('#agree_check').click(function(){
+  $('#hidden_upload').slideToggle('slow');
+});
+$('#agree_check1').click(function(){
+  $('#hidden_upload1').slideToggle('slow');
+});
+</script>
+
+</body>
+</html>

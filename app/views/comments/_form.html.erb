@@ -1,0 +1,37 @@
+<h1 id='comment-header'>New Comment</h1>
+
+<%= form_for [@commentable, @comment]  do |f| %>
+  <% if @comment.errors.any? %>
+    <div class="error_messages">
+      <h2>Please correct the following errors.</h2>
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :commentable_id, value: @commentable.id%>
+    <%= f.hidden_field :commentable_type, value: "Video"%>
+    <%= f.text_area :content, rows: 8 %>
+  </div>
+  <div class="actions">
+    <%if user_signed_in?%>
+    <%= f.submit 'Comment'%>
+    <%else%>
+    <div class="btn" id="fake_button"> Comment </div>
+    <div id="comment_sign_in" style="display:none">
+      <%=link_to "You must be signed in to comment", new_user_session_path%>
+    <div>
+    <%end%>
+  </div>
+<% end %>
+
+<script>
+$('#fake_button').click(function(){
+  $(this).hide();
+  $('#comment_sign_in').show();
+});
+</script>

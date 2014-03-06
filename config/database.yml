@@ -1,0 +1,32 @@
+development:  
+  adapter: postgresql
+  encoding: unicode
+  database: mmagap
+  pool: 5
+  port: 5432
+  host: localhost
+  username: postgres
+  password: postgres
+  
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: dd2qhvqr3i139l
+  pool: 5
+  port: 5432
+  host: ec2-54-204-44-31.compute-1.amazonaws.com
+  username: rrbysdvryshnzu
+  password: YR1LHSkkpjRyT696SHGfXzkHJg
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: dd2qhvqr3i139l
+  pool: 5
+  port: 5432
+  host: ec2-54-204-44-31.compute-1.amazonaws.com
+  username: rrbysdvryshnzu
+  password: YR1LHSkkpjRyT696SHGfXzkHJg
+
+

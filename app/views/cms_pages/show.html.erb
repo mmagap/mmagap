@@ -1,0 +1,11 @@
+<h1><%= @cpage.title %></h1>
+<div id="column2" style="text-align: justify;">
+  <p>
+    <% if !@cpage.photo.nil? %>
+    <%= image_tag(@cpage.photo, :alt => "post image", :width=>'200px', :height=>'200px', :html=>{align:'left'}) %>
+    <% end %>
+    <%= @cpage.description.html_safe %>
+  </p>
+</div>
+    
+

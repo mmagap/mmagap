@@ -1,0 +1,29 @@
+<div id="content">
+<h1>New video Lesson</h1>
+
+<%= render 'form_lesson' %>
+
+
+ <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+<script>
+
+$(document).ready(function(){
+
+  
+    $("#mytags3").tagit({
+      availableTags: ["mma", "karate", "karatedo", "taekvando", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl"]
+    });
+   
+    //$(".alert").delay(2000).fadeOut(2000);
+ 
+
+}); 
+
+
+</script>
+
+<h2>Upload your Video</h2>
+<div id="video_attachment"></div>
+<%= link_to "Video Listing", videos_path %>
+<%= link_to 'Back', videos_path %>
+</div>

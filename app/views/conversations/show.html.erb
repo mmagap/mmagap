@@ -1,0 +1,25 @@
+<h1><%= conversation.subject%> </h1>
+  <%= content_tag_for(:li, conversation.receipts_for(current_user)) do |receipt|%>
+    <div class='span12 conversation-container row-fluid' style='margin-left:0;'>
+      <div class='span3 user-name'>
+        <div>
+          <% user = receipt.message.sender %>
+          <%= link_to user.username, user %>
+        </div>
+        <div>
+          <% image = get_image user %>
+          <%= image_tag image, style: "background:#555;max-height:80px;float:left;" %>
+        </div>
+      </div>
+      <div class='conversation-message span8'>
+        <div class='page-header'>
+          <h1 class='conversation-subject'>
+            <p class='pull-right time'><%=l receipt.message.created_at.in_time_zone("America/New_York"), :format => :long %></p>
+            <div class='clear'></div>
+          </h1> 
+        </div>
+        <%=truncate(receipt.message.body, length: 210)%>
+      </div>
+    </div>
+  <%end%>
+<%= render 'messages/form', conversation: conversation%>

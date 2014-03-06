@@ -1,0 +1,233 @@
+<div class="sqora">
+  
+<div class="tabbable shade"> <!-- MAIN VIDEO WINDOW -->
+
+  <ul class="nav nav-tabs"> <!-- ALL VIDEO WINDOW -->
+    <li class="active"><a href="#tab1" data-toggle="tab">ALL VIDEOS</a></li>
+    <li><a href="#tab2" data-toggle="tab">NEEDS FEEDBACK</a></li>
+    <li><a href="#tab3" data-toggle="tab">DEMO</a></li>
+    <li><a href="#tab4" data-toggle="tab">HOW TO</a></li>
+    <!-- Button to trigger modal -->
+    <%if user_signed_in?%>
+        <a href="#myModal" role="button" class="btn" data-toggle="modal">UPLOAD</a>
+    <%end%>
+<div id="where" style="float:right;font-style:italic;border-left:1px solid #ccc;width:250px;height:100%;" ></div>
+  </ul>
+  
+<div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+       <!--SIDEBAR 1 -->
+     <div class="tabbable tabs-left">
+
+  <ul class="nav nav-tabs" id="sidebar">
+    <li class="active"><a href="#subtab10" id="sidebutton" data-toggle="tab">ACTIVE</a></li>
+    <li><a href="#subtab15" id="sidebutton" data-toggle="tab">TOP HITS</a></li>
+    <li><a href="#subtab12" id="sidebutton" data-toggle="tab">NEWEST</a></li>
+    <li><a href="#subtab13" id="sidebutton" data-toggle="tab">THIS WEEK</a></li>
+    <li><a href="#subtab14" id="sidebutton" data-toggle="tab">THIS MONTH</a></li>
+  </ul>
+  <div class="tab-content">
+   
+    <div class="tab-pane subtab active" id="subtab10" >
+      <% @videos.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+      
+    </div>
+    <div class="tab-pane subtab" id="subtab12">
+       <%#= debug params %>
+      <% @videos.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane subtab" id="subtab13">
+      <% @videos.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane subtab" id="subtab14">
+      <% @videos.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <!--Top Hits Video-->
+    <div class="tab-pane subtab" id="subtab15">
+      
+    </div>
+    
+  </div>
+  
+</div>
+<!--SIDEBAR 1 END -->
+<!-- ALL VIDEO WINDOW -->
+  
+    </div>
+    <div class="tab-pane" id="tab1">
+      <p>ALL VIDEOS</p>
+      <% @videos.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <!--SIDEBAR 2 -->
+     <div class="tabbable tabs-left">
+
+  <ul class="nav nav-tabs" id="sidebar">
+    <li class="active"><a href="#subtab21" data-toggle="tab">ACTIVE</a></li>
+    <li><a href="#subtab22" data-toggle="tab">COMMENTS</a></li>
+
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active subtab" id="subtab21" style="min-height: 170px;margin-left:220px;"  >
+      <% @videos.needs_feedback.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane subtab" style="min-height: 170px;margin-left:220px;" id="subtab22">
+      <% @videos.needs_feedback.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<!--SIDEBAR 2 END -->
+      
+    </div>
+    <div class="tab-pane" id="tab3">
+      <!--SIDEBAR 3 -->
+     <div class="tabbable tabs-left">
+
+  <ul class="nav nav-tabs" id="sidebar">
+    <li class="active"><a href="#subtab31" data-toggle="tab">ACTIVE</a></li>
+    <li><a href="#subtab32" data-toggle="tab">NEWEST</a></li>
+    <li><a href="#subtab33" data-toggle="tab">THIS WEEK</a></li>
+    <li><a href="#subtab34" data-toggle="tab">THIS MONTH</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane subtab active" id="subtab31" style="min-height: 170px;">
+      <% @videos.demo.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane subtab" id="subtab32">
+      <% @videos.demo.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane subtab" id="subtab33">
+      <% @videos.demo.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane subtab" id="subtab34">
+      <% @videos.demo.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<!--SIDEBAR 3 END -->
+    </div>
+    <div class="tab-pane" id="tab4">
+      <!--SIDEBAR 4 -->
+     <div class="tabbable tabs-left">
+
+  <ul class="nav nav-tabs" id="sidebar">
+    <li class="active"><a href="#subtab41" data-toggle="tab">ACTIVE</a></li>
+    <li><a href="#subtab42" data-toggle="tab">NEWEST</a></li>
+    <li><a href="#subtab43" data-toggle="tab">THIS WEEK</a></li>
+    <li><a href="#subtab44" data-toggle="tab">THIS MONTH</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane subtab active" id="subtab41" style="min-height: 170px;">
+      <% @videos.how_to.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane subtab" id="subtab42">
+      <% @videos.how_to.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane subtab" id="subtab43">
+      <% @videos.how_to.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+    <div class="tab-pane subtab" id="subtab44">
+      <% @videos.how_to.each do |video| %> 
+      <%= render 'vid_temp', :video=> video%>
+      <% end %>
+      <div id="paginator" style="">
+        <%= paginate @videos %>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<!--SIDEBAR 4 END -->
+    </div>
+  </div>
+  <div class="footer">
+    <div id="paginator"
+    <span style="text-align:center;"> < 1 2 3 4 > </span>
+    </div>
+    <div id="results">
+    <span style="float:right;">SHOWING 10 of 234</span>
+    </div>
+
+  </div>
+  
+  
+    </div>
+</div>
+<!--SIDEBAR 1 END -->
+<!-- ALL VIDEO WINDOW -->
+
+ <!--SQORA END -->
+
+<!-- Modal END -->

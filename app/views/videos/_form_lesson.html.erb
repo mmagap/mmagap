@@ -1,0 +1,52 @@
+
+<%#= form_for @lesson_new_path, :url => {:controller=>'videos', :action => 'lesson_new'} do |f| %>
+<%= form_for @video, :url=>lesson_create_path do |f| %>
+  <% if @video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+
+      <ul>
+      <% @video.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :category, :value=>'Lesson' %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+    <%#= show_field_error(@video, :title) %>
+  </div>
+  <div class="line">
+      <label for="tags">Tags</label>
+      <ul id="mytags3"></ul>
+    </div>
+  <div class="field">
+
+  <%= f.label :tag_list, "Tags (separated by commas)" %><br /> <!-- I DON'T KNOW IF WE NEED THIS -->
+  <div style="display:none;"><%= f.text_field :tag_list, :id=>'video_tag_list3' %></div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+    <%#= show_field_error(@video, :price) %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, as: :hidden%>
+    <%#= show_field_error(@video, :description) %>
+  </div>
+  
+  
+  <div class="field">
+ 	<%= f.file_field(:lesson_upload)  %>
+        <%#= f.hidden_field(:lesson_upload) %>
+        <%#= show_field_error(@video, :lesson_upload) %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

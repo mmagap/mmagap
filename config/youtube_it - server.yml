@@ -1,0 +1,12 @@
+common: &common
+  dev_key: AI39si51j08sOEwcTWuB8jhQKAZippiT4HaJ8mhEoCoIAip9OcZmm1ni8V5JOsws7j2KKp1BTL0rxUKjtVPjjgfg9yvyWApitA
+  client_id: "699449733727.apps.googleusercontent.com"
+  client_secret: "03i0Gre2iqZ79tLbGGLzfENL"
+  username: rebellabs
+  password: russian1
+test:
+  <<: *common
+development:
+  <<: *common
+production:
+  <<: *common

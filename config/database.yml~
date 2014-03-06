@@ -1,0 +1,32 @@
+development:  
+  adapter: postgresql
+  encoding: unicode
+  database: mmagap
+  pool: 5
+  timeout: 5000
+  port: 5432
+  host: localhost
+  username: postgres
+  password: admin
+  
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: mmagap_test
+  pool: 5
+  port: 5432
+  host: localhost
+  username: postgres
+  password: admin
+
+production:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: mmagap_production
+  pool: 5
+  port: 5432
+  host: localhost
+  username: postgres
+  password: admin

@@ -1,0 +1,18 @@
+development:
+  access_key: cf06baf76b98bf483f09
+  secret_key: 5357556bd6f8f4bee68a
+  cloud_id:
+  # Uncomment the line below if your account is in the EU
+  # api_host: api-eu.pandastream.com
+production:
+  #api_host:
+  access_key: cf06baf76b98bf483f09
+  secret_key: 5357556bd6f8f4bee68a
+  cloud_id:
+  # Uncomment the line below if your account is in the EU
+  # api_host: api-eu.pandastream.com
+test:
+  #api_host:
+  access_key: cf06baf76b98bf483f09
+  secret_key: 5357556bd6f8f4bee68a
+  cloud_id: 

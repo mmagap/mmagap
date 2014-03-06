@@ -1,0 +1,41 @@
+<style>
+#comUser a{
+color:#FFF;
+padding: 5px;
+
+}
+.delCom a{
+color:#C00;
+
+}
+#comments{
+	border:3px solid #eee; width:500px;margin-bottom:10px;
+	
+}
+#comTitle{background:#999;}
+#comUser{font-size:20px; color:#666;}
+#comImg{border:1px solid #eee; width:50px;float:left;background:#ccc; padding:7px;}
+</style>
+
+
+
+<div id="comWrap">
+  <h1>Comments</h1>
+  <% @comments.order('id DESC').each_with_index do |comment,index| %>
+    <%= render(:template =>"comments/comment", :layout => nil , :locals => { comment: comment, temp: 0 }) %>
+    <% 
+      temp = 0 
+      content = ""
+    %>
+    <%= raw recursive_comments(comment, temp, content) unless comment.comments.empty? %>
+  <% end %>
+</div>
+
+
+<script>
+$(".delCom").click(function() {
+    alert('dfdf');
+    $(".delCom").parent(".comment").hide().html('Deleted UNDO?').fadeIn("fast");
+   
+});
+</script>

@@ -1,0 +1,14 @@
+common: &common
+  dev_key: AI39si7pYQo4oaF48j3t2-CnwXCLnGp-RJMV6FXqBHzkuvMwC9t2hRPcpsSGnrLPYZZsEefKSd0eFrSKUxTwI_sqPZJ3b2N3TA
+  client_id: "918178166294-0cergqjr63jhdpcai5sqpqjchi5hlnbn.apps.googleusercontent.com"
+  client_secret: "xZNsEHpiqOqTWOg36RBFSXbu"
+  
+  username: vertaxweb@gmail.com
+  password: india#123
+  
+test:
+  <<: *common
+development:
+  <<: *common
+production:
+  <<: *common

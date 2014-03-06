@@ -1,0 +1,475 @@
+<pre>
+<%#= debug  @tagged_videos %>
+</pre>
+<div class="tabbable shade"> <!-- MAIN VIDEO WINDOW -->
+  <ul class="nav nav-tabs" id="topnave"> <!-- ALL VIDEO WINDOW -->
+    <li class="active"><%=link_to "All VIDEOS", videos_path, :id=>"all_videos" %></li>
+    <li><a href="#tab2" data-toggle="tab" id="Needs-Feedback" class="Needs-Feedback">NEEDS FEEDBACK</a></li>
+    <li><a href="#tab3" data-toggle="tab" id="Demo" class="Demo">DEMO</a></li>
+    <li><a href="#tab4" data-toggle="tab" id="HOW-TO" class="How-To">HOW TO</a></li>
+        
+    <%if user_signed_in?%>
+      <li><a href="#tab5" data-toggle="tab" id="LESSON" class="mylogin">LESSONS</a></li>
+    <%else%>
+      <li><a href="#tab5" data-toggle="tab" id="LESSON" class="nlogin">LESSONS</a></li>
+    <%end%>
+ 
+    <%if user_signed_in?%>
+      <li><a href="#myModal" role="button" class="btn" data-toggle="modal">UPLOAD VIDEO</a></li>
+    <%end%>
+    <li>  
+      <%= search_form_for(@search, :html => {:method => :get , :id=> "theFieldID"}, :remote=> true ) do |f| %>
+        <%= f.text_field :title_cont, :placeholder => "What are you looking for?" %>
+        <%= f.hidden_field :tag, value: params[:tag] %>
+        <%= button_tag(:type => 'submit', :id=>"ajaxSubmit", :class=> 'btn btn-info') do %>
+        <i> Search </i>
+      <% end %>
+    </li>
+
+    <!-- Button to trigger modal -->
+  </ul>
+</div>
+
+
+
+
+
+<div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+
+
+
+       <!--SIDEBAR 1 -->
+<div class="tabbable tabs-left">
+
+  <ul class="nav nav-tabs" id="sidebar">
+    <li class="active"><a href="#subtab10" id="set-active" data-toggle="tab">ACTIVE</a></li>
+    <li><a href="#subtab15" id="set-top-hits" data-toggle="tab">TOP HITS</a></li>
+    <li><a href="#subtab16" id="set-comments" data-toggle="tab">COMMENTS</a></li>
+
+    <li><a href="#subtab12" id="set-last-week" data-toggle="tab">THIS WEEK</a></li>
+    <li><a href="#subtab13" id="set-last-month" data-toggle="tab">THIS MONTH</a></li>
+    <li><a href="#subtab14" id="set-last-year" data-toggle="tab">THIS YEAR</a></li>
+    <!--<li id="upload_leassion"><a href="#lession_model" role="button" class="" data-toggle="modal">UPLOAD LESSON</a></li>-->
+    <li id="upload_leassion"></li>
+  </ul>
+  <div class="tab-content">
+      <div class="tab-pane subtab active" id="subtab10" >
+	  <!-- deal results-->
+	  <div style="display:none">
+	    
+	      <%=f.text_field :created_at_lteq, :placeholder => "When" , :style=> "float:left; border:1px solid red;"%>
+	      
+	      <% Video::CATEGORIES.each do |category| %>
+	      <label class="radio">
+	      <%= radio_button_tag 'q[category_eq_any][]', category %>
+	      <%end%>
+	      
+	      
+	      <div class=""> 
+	      <%= button_tag(:type => 'submit', :id=>"ajaxSubmit") %>
+	      <%end%>
+	      </div>
+	  </div>
+	    <div id="video_results" class="span12">
+	     
+	    <%= render "video_results", ajax_results: false, tag: params[:tag] %>
+	    </div> 
+      </div>
+  </div>
+  
+  </div>
+</div>
+<!-- /container -->
+</div>
+
+
+<!-- -->
+  <div style="display:none">
+<%= search_form_for(@search, :html => {:method => :get , :id=> "theFieldID"}, :remote=> true ) do |f|%>
+	<%=f.text_field :title_cont, :placeholder => "What are you looking for?" %>
+      <%= button_tag(:type => 'submit', :id=>"ajaxSubmit") do %>
+    <i class="icon-search icon-white">Search</i>
+    <% end %>
+	<%=f.text_field :created_at_lteq, :placeholder => "When" , :style=> "float:left"%>
+
+	<% Video::CATEGORIES.each do |category| %>
+		<label class="radio">
+		<%= radio_button_tag 'q[category_eq_any][]', category %>
+	<%end%>
+
+
+	<div class=""> 
+<%end%>
+</div>
+</div>
+  
+<div id='page-spinner' style="display:none;"><%=image_tag 'whole-page.gif'%></div>
+
+
+
+<!-- Modal -->
+<!-- Modal END -->
+
+<style>
+  
+/* HOVER STYLES */
+div#allvideos-pop-up
+{
+display: none;
+position: absolute;
+width: 280px;
+padding: 10px;
+background: #AEE3F2;
+color: #000000;
+border: 1px solid #4AA9C4;
+font-size: 12px;
+font-weight: normal;
+opacity:0.8;
+border-radius:5px;
+z-index: 9999;
+}
+
+div#needfeed-pop-up
+{
+display: none;
+position: absolute;
+width: 280px;
+padding: 10px;
+background: #AEE3F2;
+color: #000000;
+border: 1px solid #4AA9C4;
+font-size: 12px;
+font-weight: normal;
+opacity:0.8;
+border-radius:5px;
+z-index: 9999;
+}
+div#demo-pop-up
+{
+display: none;
+position: absolute;
+width: 280px;
+padding: 10px;
+background: #AEE3F2;
+color: #000000;
+border: 1px solid #4AA9C4;
+font-size: 12px;
+opacity:0.8;
+border-radius:5px;
+font-weight: normal;
+z-index: 9999;
+}
+div#howto-pop-up
+{
+display: none;
+position: absolute;
+width: 280px;
+padding: 10px;
+background: #AEE3F2;
+color: #000000;
+border: 1px solid #4AA9C4;
+font-size: 12px;
+opacity:0.8;
+border-radius:5px;
+font-weight: normal;
+z-index: 9999;
+}
+div#mylogin-pop-up
+{
+display: none;
+position: absolute;
+width: 280px;
+padding: 10px;
+background: #AEE3F2;
+color: #000000;
+border: 1px solid #4AA9C4;
+font-size: 12px;
+opacity:0.8;
+border-radius:5px;
+font-weight: normal;
+z-index: 9999;
+}
+/*div#nlogin-pop-up
+{
+display: none;
+position: absolute;
+width: 280px;
+padding: 10px;
+background: #AEE3F2;
+color: #000000;
+border: 1px solid #4AA9C4;
+font-size: 12px;
+opacity:0.8;
+border-radius:5px;
+font-weight: normal;
+z-index: 9999;
+}*/
+</style>
+ <!-- HIDDEN / POP-UP DIV -->
+<div id="needfeed-pop-up">
+<p>
+These are videos posted by people who wish to learn specific information and need your advice or service. If you want to be coached, upload a video in the  <strong>"Needs Feedback"</strong>category.
+</p>
+</div>
+
+<div id="demo-pop-up">
+<p>
+ These are videos posted by people who wish to demonstrate their skills. Want to show off your skills, upload a video in the <strong>"Demo"</strong> category.
+</p>
+</div>
+
+<div id="howto-pop-up">
+<p>
+ These are videos posted by people who wish to teach specific information. Want to share your knowledge, upload a video in the <strong>"How to"</strong> category.</p>
+</div>
+
+<div id="allvideos-pop-up">
+<p>All Videos..</p>
+</div>
+<div id="mylogin-pop-up">
+<p><strong>Lesson....</strong> Category</p>
+</div>
+<!--<div id="nlogin-pop-up">
+<p><strong>Lesson....</strong> Category</p>
+</div>-->
+
+<script>
+$(function()
+  
+{
+  var moveLeft = 20;
+  var moveDown = 10;
+  
+  
+  $('a#all_videos').hover(function(e)
+  {
+      $('div#allvideos-pop-up').fadeIn();
+      //.css('top', e.pageY + moveDown)
+      //.css('left', e.pageX + moveLeft)
+      //.appendTo('body');
+  }, function()
+  {
+      $('div#allvideos-pop-up').fadeOut();
+  });
+  
+  $('a#all_videos').mousemove(function(e)
+  {
+      $("div#allvideos-pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+  });
+
+}); 
+  
+$(function()
+  
+{
+  var moveLeft = 20;
+  var moveDown = 10;
+  
+  
+  $('a#Needs-Feedback').hover(function(e)
+  {
+      $('div#needfeed-pop-up').fadeIn();
+      //.css('top', e.pageY + moveDown)
+      //.css('left', e.pageX + moveLeft)
+      //.appendTo('body');
+  }, function()
+  {
+      $('div#needfeed-pop-up').fadeOut();
+  });
+  
+  $('a#Needs-Feedback').mousemove(function(e)
+  {
+      $("div#needfeed-pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+  });
+
+}); 
+  
+  
+$(function()
+  
+{
+  var moveLeft = 20;
+  var moveDown = 10;
+  
+  
+  $('a#Demo').hover(function(e)
+  {
+      $('div#demo-pop-up').fadeIn();
+      //.css('top', e.pageY + moveDown)
+      //.css('left', e.pageX + moveLeft)
+      //.appendTo('body');
+  }, function()
+  {
+      $('div#demo-pop-up').fadeOut();
+  });
+  
+  $('a#Demo').mousemove(function(e)
+  {
+      $("div#demo-pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+  });
+
+});
+
+$(function()
+  
+{
+  var moveLeft = 20;
+  var moveDown = 10;
+  
+  
+  $('a#HOW-TO').hover(function(e)
+  {
+      $('div#howto-pop-up').fadeIn();
+      //.css('top', e.pageY + moveDown)
+      //.css('left', e.pageX + moveLeft)
+      //.appendTo('body');
+  }, function()
+  {
+      $('div#howto-pop-up').fadeOut();
+  });
+  
+  $('a#HOW-TO').mousemove(function(e)
+  {
+      $("div#howto-pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+  });
+
+});  
+
+$(function()
+  
+{
+  var moveLeft = 20;
+  var moveDown = 10;
+  
+  
+  $('a#LESSON').hover(function(e)
+  {
+      $('div#mylogin-pop-up').fadeIn();
+      //.css('top', e.pageY + moveDown)
+      //.css('left', e.pageX + moveLeft)
+      //.appendTo('body');
+  }, function()
+  {
+      $('div#mylogin-pop-up').fadeOut();
+  });
+  
+  $('a#LESSON').mousemove(function(e)
+  {
+      $("div#mylogin-pop-up").css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+  });
+
+});
+
+</script>
+
+
+
+<script>
+
+$("#set-active").click(function() {
+	$("#q_created_at_lteq").val("active");
+})
+$("#set-last-week").click(function() {
+	$("#q_created_at_lteq").val("7");
+})
+$("#set-last-month").click(function() {
+	$("#q_created_at_lteq").val("30");
+})
+$("#set-last-year").click(function() {
+	$("#q_created_at_lteq").val("365");
+})
+
+$("#set-top-hits").click(function() {
+	$("#q_created_at_lteq").val("top-hits");
+})
+
+$("#set-active, #set-last-week, #set-last-month, #set-last-year, #set-top-hits").click(function() {
+    $('#ajaxSubmit').click();
+})
+
+$('.btn-group button').each(function() { //THE SUB CATEGORY TOGGLE FUNCTION
+    $(this).click(function(){
+var ider = $(this).attr('id');
+      if($("#home-btnset-add2").css('display') == "none" && ider == "Needs-Feedback") 
+{ $("#home-btnset-add1").hide();
+      $("#home-btnset-add2").show();
+    }
+    else if(ider != "Needs-Feedback"){$("#home-btnset-add1").show();
+      $("#home-btnset-add2").hide();}
+
+})
+    }); //THE END OF THE SUB CATEGORY TOGGLE FUNCTION
+  
+
+  
+ $('a#Needs-Feedback').click(function(){
+
+      $('a#set-top-hits').hide();
+      $('a#set-last-week').hide();
+      $('a#set-last-month').hide();
+      $('a#set-last-year').hide();
+      $('a#set-comments').show();
+
+
+            
+      $('li#upload_leassion').html('');
+      $('#q_category_eq_any__Needs-Feedback').prop('checked',true);
+      $('#ajaxSubmit').click();
+    });
+  $('a#HOW-TO').click(function(){
+   
+      $('a#set-top-hits').show();
+      $('a#set-last-week').show();
+      $('a#set-last-month').show();
+      $('a#set-last-year').show();
+      $('a#set-comments').hide();
+	  
+      $('li#upload_leassion').html('');
+      $("#q_category_eq_any__How-To").prop('checked',true);
+      $('#ajaxSubmit').click();
+    });
+  
+   $('a#Demo').click(function(){
+    
+      $('a#set-top-hits').show();
+      $('a#set-last-week').show();
+      $('a#set-last-month').show();
+      $('a#set-last-year').show();
+      $('a#set-comments').hide();
+	  
+      $('li#upload_leassion').html('');
+      $('#q_category_eq_any__Demo').prop('checked',true);
+      $('#ajaxSubmit').click();
+    });
+   
+   $('a#LESSON').click(function(){
+    
+    	$('a#set-top-hits').show();
+	$('a#set-last-week').show();
+	$('a#set-last-month').show();
+	$('a#set-last-year').show();
+	$('a#set-comments').hide();
+    
+      var className = $(this).attr('class');
+      //alert(className);
+      if(className== "mylogin"){
+	//$('li#upload_leassion').html('<a href="#lession_model" role="button" class="" data-toggle="modal">UPLOAD LESSON</a>');
+	$('li#upload_leassion').html('<a href="/lesson" role="button" class="">UPLOAD LESSON</a>');
+	
+      }else{
+	$('li#upload_leassion').html('');
+	
+      }
+      
+      $('#q_category_eq_any__Lesson').prop('checked',true);
+      $('#ajaxSubmit').click()
+      
+      
+      
+    });
+   
+</script>
+
+
+

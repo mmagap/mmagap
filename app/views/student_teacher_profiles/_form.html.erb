@@ -1,0 +1,67 @@
+
+<% s_t_global_class = show ? 's-t-show-g-class' : '' %>
+<%= simple_form_for(@student_teacher_profile, html: {class: 'form-horizontal', id: 's-t-profile-form'}) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <div class='row-fluid' id='bid-offer-container'>
+      <div class='page-header'>
+        <h1 class='text-center'>Student Profile</h1>
+      </div>
+      <div class='span6'  id='bid-container'>
+        <%= f.input :to_learn, as: :text, label: 'I want to Learn:', input_html: { class: s_t_global_class } %>
+        <%= f.input :on_leant_amount, as: :text, label: 'Im willing to spend:', input_html: { class: s_t_global_class } %>
+      </div>
+      <div class='span6'>
+        <div class='page-header'>
+          <h1 class='bid-offer-s-t-profile'>If you want to offer your own service to this user, please Offer it below.</h1>
+        </div>
+        <% unless @student_teacher_profile.user == current_user %>
+          <p class='s-t-profile-pay-warning'>Got questions? Contact this user below.</p>
+          <% if user_signed_in? %>
+            <%= simple_form_for(@message = Comment.new(commentable_id: @student_teacher_profile.id), html: {id: 's-t-messages-form'}) do |f| %>
+              <div class="form-inputs">
+                <%= f.input :commentable_type, as: :hidden, input_html: { value: 'StudentTeacherProfile' } %>
+                <%= f.input :commentable_id, as: :hidden, input_html: { value: @student_teacher_profile.id} %>
+                <%= f.input :content, as: :text, label: ''%>
+              </div>
+              <%= f.submit 'Submit', class: 'btn' %>
+            <% end %>
+          <% else %>
+            <h3 class='text-center'>You need to sign up or register first.</h3>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='row-fluid' id='bid-offer-container'>
+      <div class='page-header'>
+        <h1 class='text-center'>Teacher Profile</h1>
+      </div>
+      <div class='span6'  id='bid-container'>
+        <%= f.input :to_teach, as: :text, label: 'I want to Teach:', input_html: { class: s_t_global_class } %>
+        <%= f.input :for_teaching_amount, as: :text, label: 'For my service I want:', input_html: { class: s_t_global_class } %>
+      </div>
+      <div class='span6'>
+        <div class='btn-group'>
+          <%= link_to 'Bid', '#', class: 'btn'%>
+          <%= link_to 'Offer', '#', class: 'btn'%>
+        </div>
+        <div class='page-header'>
+          <h1 class='bid-offer-s-t-profile'>If you want the service this user is providing, please place a bid below.</h1>
+        </div>
+        <p class='s-t-profile-pay-warning'>All transactions done through MMAGap payment system are guaranteed by MMAGap, we do not advise that you contact or transact with this or any other user outside of this website as we will not be liable and will not be able to help you should something go wrong.</p>
+      </div>
+    </div>
+  </div>
+  <% if !show %>
+    <div class="form-actions s-t-profile-form-actions">
+      <%= f.button :submit, class: 'btn s-t-profile-btn' %>
+    </div>
+  <% else %>
+    <% if user_signed_in? %>
+      <% if current_user == @student_teacher_profile.user %>
+        <%= link_to 'Edit', edit_student_teacher_profile_path(current_user.student_teacher_profile), class: 'btn s-t-profile-btn' %>
+      <% end %>
+    <% end%>
+  <% end %>
+<% end %>

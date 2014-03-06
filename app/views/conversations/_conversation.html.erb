@@ -1,0 +1,32 @@
+<div class='row-fluid'>
+  <%=content_tag_for(:li, conversation) do |conversation|%>
+    <div class='span12 conversation-container row-fluid' style='margin-left:0;'>
+      <div class='span3 user-name'>
+        <div>
+          <% user = conversation.receipts.first.receiver == current_user ? conversation.messages.first.sender  : conversation.receipts.first.receiver %>
+          <%= link_to user.username, user %>
+        </div>
+        <div>
+          <% image = get_image user %>
+          <%= image_tag image, style: "background:#555;max-height:80px;float:left;" %>
+        </div>
+      </div>
+      <div class='conversation-message span8'>
+        <div class='page-header'>
+          <h1 class='conversation-subject'>
+            <%= link_to "Go to #{conversation.subject} conversation", conversation%> 
+            <span class='pull-right time'><%=l conversation.updated_at.in_time_zone("America/New_York"), :format => :long %></span>
+          </h1> 
+        </div>
+        <%=truncate(conversation.messages.last.body, length: 210)%>
+      </div>
+      <%if conversation.is_completely_trashed?(current_user)%>
+        <%= link_to image_tag('error.png', size: '15x15'), [:untrash, conversation], method: :post, id: "delete-conversation" %>
+      <%else%>
+        <%= link_to image_tag('error.png', size: '15x15'), [:trash, conversation], method: :post, id: "delete-conversation" %>
+      <%end%>
+    </div>
+  <%end%>
+</div>
+
+          

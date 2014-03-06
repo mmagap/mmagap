@@ -1,0 +1,37 @@
+LOG:  database system was shut down at 2013-08-05 20:44:53 EEST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 2113) running in data directory "/usr/local/var/postgres"?
+FATAL:  database "webuis_development" does not exist
+FATAL:  database "webuis_test" does not exist
+ERROR:  missing FROM-clause entry for table "user_id" at character 93
+STATEMENT:  SELECT  "comment_likes".* FROM "comment_likes"  WHERE "comment_likes"."comment_id" = 63 AND "user_id"."user_id" = '17' LIMIT 1
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  SELECT  "comment_likes".* FROM "comment_likes"  WHERE "comment_likes"."comment_id" = 63 AND "comment_likes"."user_id" = 17 LIMIT 1
+LOG:  received smart shutdown request
+LOG:  autovacuum launcher shutting down
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2013-09-08 13:38:05 EEST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2013-09-19 07:31:15 EEST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 8419) running in data directory "/usr/local/var/postgres"?
+FATAL:  lock file "postmaster.pid" already exists
+HINT:  Is another postmaster (PID 8419) running in data directory "/usr/local/var/postgres"?
+LOG:  received smart shutdown request
+LOG:  autovacuum launcher shutting down
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2013-09-22 22:30:24 EEST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  role "root" does not exist
