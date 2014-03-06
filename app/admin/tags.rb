@@ -1,3 +1,3 @@
-ActiveAdmin.register Tag do
+ActiveAdmin.register Tag, as:'AwesomeTag' do
   
 end
