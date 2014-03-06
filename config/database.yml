@@ -12,21 +12,21 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: dd2qhvqr3i139l
+  database: d3vlao7dl4vq69
   pool: 5
   port: 5432
-  host: ec2-54-204-44-31.compute-1.amazonaws.com
-  username: rrbysdvryshnzu
-  password: YR1LHSkkpjRyT696SHGfXzkHJg
+  host: ec2-54-225-103-9.compute-1.amazonaws.com
+  username: rrwbzejljxjmfc
+  password: HfJqNL-pDrXqIas5sO5NbQxnTZ
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: dd2qhvqr3i139l
+  database: d3vlao7dl4vq69
   pool: 5
   port: 5432
-  host: ec2-54-204-44-31.compute-1.amazonaws.com
-  username: rrbysdvryshnzu
-  password: YR1LHSkkpjRyT696SHGfXzkHJg
+  host: ec2-54-225-103-9.compute-1.amazonaws.com
+  username: rrwbzejljxjmfc
+  password: HfJqNL-pDrXqIas5sO5NbQxnTZ
 
 
