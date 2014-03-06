@@ -60,13 +60,7 @@ module ApplicationHelper
     end
   end
   
-  def all_tags
-    tags = Tag.find(:all)
-    mytag = []
-    tags.each do |tag|
-    mytag.push(tag.name)
-    end
-  end
+
   
   def show_field_error(model, field)
     s=""

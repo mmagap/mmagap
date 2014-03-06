@@ -48,5 +48,12 @@ class ApplicationController < ActionController::Base
     end  
   end  
   
+  def all_tags
+    @tags = Tag.find(:all)
+    @mytag = []
+    @tags.each do |tag|
+    @mytag.push(tag.name)
+    end
+  end
   
 end
