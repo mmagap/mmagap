@@ -9,8 +9,8 @@ ActiveAdmin.setup do |config|
   #config.site_title = "Mmagap"
  
  
-  #config.register_javascript "jwplayer/jwplayer"
-  #config.register_javascript "jwplayer/my"
+  config.register_javascript "jwplayer/jwplayer"
+  config.register_javascript "jwplayer/my"
   config.register_javascript "ckeditor/ckeditor"
   config.register_javascript 'ckeditor/config.js'
   config.register_javascript 'ckeditor/ckeditor.js' 
@@ -19,7 +19,7 @@ ActiveAdmin.setup do |config|
   
   #config.view_factory.footer = Footer
 
-  config.site_title = "MMAGAP.COM"
+  config.site_title = "MMAGAP"
 
 
   # Set the link url for the title. For example, to take
