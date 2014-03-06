@@ -292,7 +292,8 @@ Please select CATEGORY
  
  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
  
- <% @mytag = all_tags %>
+ <% #@mytag = all_tags
+ %>
  <script>
   $(function(){
       var sampleTags = [<%= raw(@mytag.map(&:inspect).join(', ')) %>];
