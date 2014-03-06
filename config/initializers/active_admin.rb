@@ -6,20 +6,20 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
 
-  config.site_title = "Mmagap"
+  #config.site_title = "Mmagap"
  
  
   #config.register_javascript "jwplayer/jwplayer"
   #config.register_javascript "jwplayer/my"
-  #config.register_javascript "ckeditor/ckeditor"
-  #config.register_javascript 'ckeditor/config.js'
-  #config.register_javascript 'ckeditor/ckeditor.js' 
-  #config.register_javascript 'ckeditor/init.js'
+  config.register_javascript "ckeditor/ckeditor"
+  config.register_javascript 'ckeditor/config.js'
+  config.register_javascript 'ckeditor/ckeditor.js' 
+  config.register_javascript 'ckeditor/init.js'
   config.register_stylesheet 'active_admin_ex.css'
   
   #config.view_factory.footer = Footer
 
-  #config.site_title = "MMAGAP.COM"
+  config.site_title = "MMAGAP.COM"
 
 
   # Set the link url for the title. For example, to take
