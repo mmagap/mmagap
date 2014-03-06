@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   
- # before_filter :all_tags
+  before_filter :all_tags
   before_filter :paypal_details
   before_filter :gethostname
   before_filter :subscriptions_plan
