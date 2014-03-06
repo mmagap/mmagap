@@ -61,10 +61,10 @@ module ApplicationHelper
   end
   
   def all_tags
-    @tags = Tag.find(:all)
-    @mytag = []
-    @tags.each do |tag|
-    @mytag.push(tag.name)
+    tags = Tag.find(:all)
+    mytag = []
+    tags.each do |tag|
+    mytag.push(tag.name)
     end
   end
   
