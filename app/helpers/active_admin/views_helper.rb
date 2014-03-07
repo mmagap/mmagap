@@ -17,13 +17,13 @@ module ActiveAdmin::ViewsHelper #camelized file name
               <div id="myElement">Loading the player...</div>
               <script type="text/javascript">
                 jwplayer("myElement").setup({
-                    flashplayer: '/assets/jwplayer.flash.swf"',
-                    file: "#{youtube_url}"
-                    base:'/assets/',
+                    flashplayer: '/assets/jwplayer.flash.swf',
+                    file: "#{youtube_url}",
+                    
                 });
               </script>
             EOHTML
-       
+       #/*base:'/assets/',8?
     end
     #if (vtype == 'youtube')
     #  
