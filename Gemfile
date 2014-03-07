@@ -48,7 +48,7 @@ gem 'awesome_print'
 gem 'ckeditor', "~> 3.7.3"
 gem 'ckeditor_rails'
 
-gem 'jwplayer-rails'
+#gem 'jwplayer-rails'
 
 gem 'stripe'
 gem 'actionmailer'

@@ -233,7 +233,8 @@
     <div id="upload_dialog"> <!-- UPLOAD VIDEO FORM -->
   <%@video=Video.new%>
 <%= simple_form_for  @video, :html => {:multipart => true}  do |f| %>
- <input type="hidden" name="nav_cat" id="nav_cat">
+  <input type="hidden" name="nav_cat" id="nav_cat">
+  <input type="hidden" name="video[price]" id="nav_cat" value="0.00">
 <%=f.input :title %>
  <div class="line">
       <label for="tags">Tags</label>
@@ -263,21 +264,7 @@ Please select CATEGORY
 <%end%>
 </div>
 
-<!--Start Register model-->
 
-
-
-<!--REGISTER POP PUP CODE HERE -->
-
-
-
-
-
-
-
-
-
-<!--End Register model-->
   
   <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>

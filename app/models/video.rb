@@ -5,6 +5,7 @@ class Video < ActiveRecord::Base
   
   attr_accessible :title, :video_link,:file, :category, :tag_list, :views, :user_id, :innappropriate,
   :description, :lesson_upload, :price, :is_active
+  
   has_attached_file :lesson_upload
 
   
@@ -12,22 +13,16 @@ class Video < ActiveRecord::Base
   validates_presence_of :title
   validates :description, presence: true, length: { in: 1..200 }
   
-  validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => {:greater_than => 0,
-  :less_than => 9999999999}
-  #
-  #
-  #
-  #
-  #
-  #
-  validates_attachment_presence :lesson_upload
-  validates_attachment_size :lesson_upload, :less_than => 50.megabytes
+  validates :price, :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }, :numericality => { :less_than => 9999999999}
+  
+  #validates_attachment_presence :lesson_upload
+  #validates_attachment_size :lesson_upload, :less_than => 50.megabytes
   #validates_attachment_content_type :lesson_upload, :content_type => ['video/mp4', 'video/avi','video/mpeg', 'video/flv']
-  validates_attachment_content_type :lesson_upload, :content_type => ['video/mp4', 'video/avi','video/mpeg', 'video/flv']
-  validates_attachment_content_type :lesson_upload,
-                                    :content_type => ['video/mp4'],
-                                    :message => "Sorry, right now we only support MP4 video.",
-                                    :if => :is_type_of_video?
+  #validates_attachment_content_type :lesson_upload, :content_type => ['video/mp4', 'video/avi','video/mpeg', 'video/flv']
+  #validates_attachment_content_type :lesson_upload,
+                                    #:content_type => ['video/mp4'],
+                                    #:message => "Sorry, right now we only support MP4 video.",
+                                    #:if => :is_type_of_video?
 
 
   has_many :comments, as: :commentable, dependent: :destroy

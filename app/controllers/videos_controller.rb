@@ -90,6 +90,12 @@ class VideosController < ApplicationController
     #@video = params
     params[:video]['price'] = '0.00';
     params[:video]['is_active'] = '1';
+    #params[:video]['lesson_upload'] = 'no_image';
+    #params[:video]['lesson_upload_file_name'] = 'no_image';
+    #params[:video]['lesson_upload_content_type'] = 'no_image';
+    #params[:video]['lesson_upload_file_size'] = '0';
+ 
+    
         
     @video = current_user.videos.build(params[:video])
     respond_to do |format|
