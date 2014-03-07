@@ -34,7 +34,7 @@ ActiveAdmin.register CmsPage do
       f.input :title
       f.input :menu_title
       f.input :excerpt, :input_html =>{:class => "sort_desc", :class => 'autogrow', :rows => 5, :cols => 20}
-      f.input :description, :label=>true, :input_html => { :class => "ckeditor", :id => "descripcion"}
+      f.input :description, :label=>true, :input_html => { :class => "ckeditor", :id => "description"}
       f.input :photo, :as => "file", :hint => f.template.image_tag(f.object.photo, :height=>'100')
       f.input :is_active
     end

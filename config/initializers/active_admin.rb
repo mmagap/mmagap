@@ -9,14 +9,13 @@ ActiveAdmin.setup do |config|
   config.site_title = "Mmagap"
  
  
-  config.register_javascript "jwplayer/jwplayer"
-  config.register_javascript "jwplayer/my"
   config.register_javascript "ckeditor/ckeditor"
   #config.register_javascript 'ckeditor/config.js'
   #config.register_javascript 'ckeditor/ckeditor.js' 
   #config.register_javascript 'ckeditor/init.js'
   config.register_stylesheet 'active_admin_ex.css'
-  
+  #config.register_javascript "jwplayer/jwplayer"
+  #config.register_javascript "jwplayer/my"
   #config.view_factory.footer = Footer
 
   #config.site_title = "MMAGAP"
