@@ -1,9 +1,8 @@
-
-<%= form_for inquiry do |f| %>
-  <% if inquiry.errors.any? %>
+<%= form_for @inquiry do |f| %>
+  <% if @inquiry.errors.any? %>
     <div id="error_explanation">
       <ul>
-      <% inquiry.errors.full_messages.each do |msg| %>
+      <% @inquiry.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -19,7 +18,10 @@
     <%= f.label :email %><br/>
     <%= f.text_field :email %>
   </div>
-  
+  <div>
+    <%= f.label :subject %><br/>
+    <%= f.text_field :subject %>
+  </div>
   <div>
     <%= f.label :message %><br/>
     <%= f.text_area :message, :cols => "30", :rows => "10" %>
