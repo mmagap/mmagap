@@ -1,4 +1,6 @@
 ActiveAdmin.register Video do
+ 
+  
   filter :title
   filter :category
   filter :created_at
@@ -13,11 +15,13 @@ ActiveAdmin.register Video do
 	  if !videolink.video_link.nil?
 		
 	     #video_tag('http//www.youtube.com/embed/CGyAaR2aWcA',:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>videolink.id)
-	     my_helper(videolink.video_link).html_safe
+	     youtubeplayer(videolink.video_link, 'youtube').html_safe
 	  elsif !videolink.lesson_upload.nil?
-	     video_tag(videolink.lesson_upload,:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>videolink.id)
+	     
+	     youtubeplayer(videolink.lesson_upload, 'lesson').html_safe
+	     #video_tag(videolink.lesson_upload,:controls=>true,:autobuffer=>true,:size=>"320X249")
 	     #jwplayer({file:videolink.lesson_upload})
-	     #jwplayer({file:'http://www.youtube.com/watch?v=CGyAaR2aWcA'})
+	     #jwplayer({file:videolink.lesson_upload})
 	  else
 		    
 	  end	    
@@ -47,9 +51,9 @@ ActiveAdmin.register Video do
         row :is_active
         row :video do
           if !video.video_link.nil?
-	     my_helper(video.video_link).html_safe
+	     youtubeplayer(video.video_link, 'youtube').html_safe
 	  elsif !video.lesson_upload.nil?
-	     video_tag(video.lesson_upload,:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>video.id)
+	     youtubeplayer(video.lesson_upload, 'lesson').html_safe
 	  else
 	  end	    
         end

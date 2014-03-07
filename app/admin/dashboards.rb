@@ -80,9 +80,4 @@ ActiveAdmin::Dashboards.build do
     strong { link_to "View All Video", admin_videos_path }
   end
   
-  
-  
-  
-  
-
 end

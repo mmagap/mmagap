@@ -14,6 +14,8 @@ ActiveAdmin.setup do |config|
   #config.register_javascript 'ckeditor/ckeditor.js' 
   #config.register_javascript 'ckeditor/init.js'
   config.register_stylesheet 'active_admin_ex.css'
+  
+ 
   config.register_javascript "jwplayer/jwplayer"
   config.register_javascript "jwplayer/my"
   #config.view_factory.footer = Footer
@@ -83,16 +85,16 @@ ActiveAdmin.setup do |config|
 
 
   # == Logging Out
-  #
+  #                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
   # Active Admin displays a logout link on each screen. These
   # settings configure the location and method used for the link.
   #
   # This setting changes the path where the link points to. If it's
-  # a string, the strings is used as the path. If it's a Symbol, we
-  # will call the method to return the path.
-  #
-  # Default:
-  config.logout_link_path = :destroy_admin_user_session_path
+                                                                                                                                                                      # a string, the strings is used as the path. If it's a Symbol, we 
+                                                                                                                                                                      # will call the method to return the path.
+                                                                                                                                                                      #
+                                                                                                                                                                      # Default:
+                                                                                                                                                                      config.logout_link_path = :destroy_admin_user_session_path
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
@@ -181,6 +183,6 @@ ActiveAdmin.setup do |config|
   
 end
 
-module ActiveAdmin::ViewHelpers
-  include ApplicationHelper
-end
+          #module ActiveAdmin::ViewHelpers
+          #  include ApplicationHelper
+          #end
