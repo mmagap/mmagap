@@ -1,5 +1,5 @@
 <%= form_for inquiry do |f| %>
-  <% if @nquiry.errors.any? %>
+  <% if inquiry.errors.any? %>
     <div id="error_explanation">
       <ul>
       <% inquiry.errors.full_messages.each do |msg| %>
