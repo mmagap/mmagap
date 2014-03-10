@@ -9,7 +9,7 @@ Mmagap::Application.routes.draw do
 
 
   #resources :videos  
- 
+  
   
   #following system
   resources :relationships, only: [:create, :destroy]
@@ -101,9 +101,7 @@ Mmagap::Application.routes.draw do
   
   #get "paypal/checkout", to: "subscriptions#paypal_checkout"
  
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self) 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+ 
 
   resources :requests
   resources :homes
@@ -130,5 +128,9 @@ Mmagap::Application.routes.draw do
     match '/contactus' => 'static#contactus', :via => :get
   
   match 'cms_pages/show/:id' => 'cms_pages#show'
+  
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self) 
+  devise_for :admin_users, ActiveAdmin::Devise.config
     
 end

@@ -1,9 +1,24 @@
 ActiveAdmin.register User do
+  
+  
+  #controller do
+  #  defaults :finder => :find_by_slug
+  #end
+  
+  before_filter :only => [:show, :edit, :update, :destroy] do
+      @user = User.find_by_username(params[:id])
+  end
+ 
+  
   filter :name
   filter :email
   filter :created_at
   filter :updated_at
   
+  
+  
+  
+              
   index do
     id_column
     column :name
@@ -14,6 +29,20 @@ ActiveAdmin.register User do
     #column :is_active
     column :created_at
     default_actions
+    #actions defaults: false do |user|
+    #  link_to 'View', admin_user_path(user.id)
+    #  link_to 'Edit', edit_admin_user_path(user.id)
+    #  link_to 'Delete', admin_user_path(user.id)
+    #end
+    
+    #actions  do |user|
+    #  link_to('Show', admin_user_path(user.id), :class=>'view_link')
+    #  link_to('Edit', edit_admin_user_path(user.id))
+    #  link_to('Delete', admin_user_path(user.id))
+    #end
+    
+    
+    
   end
   
 

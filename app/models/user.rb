@@ -10,10 +10,10 @@ class User < ActiveRecord::Base
 
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation,:videos, :remember_me, :username, :image,
+  attr_accessible :id, :email, :password, :password_confirmation,:videos, :remember_me, :username, :image,
   :membership, :facebookimage, :address, :city, :state, :zip, :country
 
- acts_as_messageable
+  acts_as_messageable
  
   mount_uploader :image, ImageUploader
   mount_uploader :facebookimage, ImageUploader

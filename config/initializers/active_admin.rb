@@ -7,8 +7,8 @@ ActiveAdmin.setup do |config|
   #
 
   config.site_title = "Mmagap"
-   config.register_javascript "jquery-1.9.0.js"
- config.register_javascript "jquery-ui.js"
+  config.register_javascript "jquery-1.9.0.js"
+  config.register_javascript "jquery-ui.js"
  
   current_javascripts = config.javascripts.clone
   config.clear_javascripts! 
