@@ -19,10 +19,6 @@ module ActiveAdmin::ViewsHelper #camelized file name
             </script>
           EOHTML
       end
-      
-      
-      
-    
     else
        
        #@f_video_code =  %Q{<div class="flowplayer"  data-ratio="0.4167" style="width:320px;height:210px;"><video><source type="video/mp4" src="#{youtube_url}"></video></div>}

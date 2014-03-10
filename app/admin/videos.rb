@@ -8,36 +8,46 @@ ActiveAdmin.register Video do
   filter :created_at
   filter :updated_at
   
-  index do
-    id_column
-    column :title
-    column :category
+  index do |video|
+	  id_column
+	  column :title
+	  column :category
+          
+          
+          
+	  #  column "Video" do |videolink|
+	  #	    if !videolink.video_link.nil?
+	  #		  
+	  #	       #video_tag('http//www.youtube.com/embed/CGyAaR2aWcA',:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>videolink.id)
+	  #	       youtubeplayer(videolink.video_link, 'youtube').html_safe
+	  #	    else
+	  #				      
+	  #	    end	    
+	  #		  
+	  #	    #column :video_link
+	  #  end
+	  #   
+	  #  column "Lesson Upload" do |lessonupload|
+	  #	    if !lessonupload.lesson_upload.nil?
+	  #	   
+	  #		      youtubeplayer(lessonupload.lesson_upload, 'lesson').html_safe
+	  #		      #video_tag(videolink.lesson_upload,:controls=>true,:autobuffer=>true,:size=>"320X249")
+	  #		      #jwplayer({file:videolink.lesson_upload})
+	  #		      #jwplayer({file:videolink.lesson_upload})
+	  #	    else
+	  #		  
+	  #	    end	    
+	  #		  
+	  #	#column :video_link
+	  #  end
+	#   
     
-    column "Video" do |videolink|
-	  if !videolink.video_link.nil?
-		
-	     #video_tag('http//www.youtube.com/embed/CGyAaR2aWcA',:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>videolink.id)
-	     youtubeplayer(videolink.video_link, 'youtube').html_safe
-	  elsif !videolink.lesson_upload.nil?
-	     
-	     youtubeplayer(videolink.lesson_upload, 'lesson').html_safe
-	     #video_tag(videolink.lesson_upload,:controls=>true,:autobuffer=>true,:size=>"320X249")
-	     #jwplayer({file:videolink.lesson_upload})
-	     #jwplayer({file:videolink.lesson_upload})
-	  else
-		    
-	  end	    
-		    
-	  #column :video_link
-    end
     
-    
-    
-    #column :lesson_upload
+	  #column :lesson_upload
    
-    column :is_active
-    column :created_at
-    default_actions
+	  column :is_active
+	  column :created_at
+	  default_actions
   end
   
   
@@ -96,6 +106,7 @@ ActiveAdmin.register Video do
 	  elsif !video.lesson_upload.nil?
 	     youtubeplayer(video.lesson_upload, 'lesson').html_safe
 	  else
+		    
 	  end	    
         end
       end
