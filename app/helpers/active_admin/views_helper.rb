@@ -4,7 +4,24 @@ module ActiveAdmin::ViewsHelper #camelized file name
     
     if (vtype == 'youtube')
       @youtube_video_id = (/([\w-]{11})/.match(youtube_url)).to_s
-      @youtube_video_code =  %Q{<iframe title="YouTube video player" style=" margin-top: 24px;" width="400px" height="249px" src="http://www.youtube.com/embed/#{ @youtube_video_id}" frameborder="0" allowfullscreen></iframe>}
+      
+      if !@youtube_video_id.nil?
+       @youtube_video_code =  %Q{<iframe title="YouTube video player" style=" margin-top: 24px;" width="400px" height="249px" src="http://www.youtube.com/embed/#{ @youtube_video_id}" frameborder="0" allowfullscreen></iframe>}
+      else
+        v =
+          <<-EOHTML
+            <div id="myElement">Loading the player...</div>
+            <script type="text/javascript">
+              jwplayer("myElement").setup({
+                  file: "#{youtube_url}",
+                  
+              });
+            </script>
+          EOHTML
+      end
+      
+      
+      
     
     else
        
