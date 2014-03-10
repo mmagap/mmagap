@@ -17,7 +17,6 @@ module ActiveAdmin::ViewsHelper #camelized file name
               <div id="myElement">Loading the player...</div>
               <script type="text/javascript">
                 jwplayer("myElement").setup({
-                    flashplayer: '/assets/jwplayer.flash.swf',
                     file: "#{youtube_url}",
                     
                 });

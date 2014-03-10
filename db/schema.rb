@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140307142518) do
+ActiveRecord::Schema.define(:version => 20140310054142) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -363,7 +363,7 @@ ActiveRecord::Schema.define(:version => 20140307142518) do
     t.integer  "lesson_upload_file_size"
     t.datetime "lesson_upload_updated_at"
     t.string   "price"
-    t.string   "is_active"
+    t.boolean  "is_active"
   end
 
   add_foreign_key "notifications", "conversations", name: "notifications_on_conversation_id"

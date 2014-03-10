@@ -7,17 +7,29 @@ ActiveAdmin.setup do |config|
   #
 
   config.site_title = "Mmagap"
+   config.register_javascript "jquery-1.9.0.js"
+ config.register_javascript "jquery-ui.js"
+ 
+  current_javascripts = config.javascripts.clone
+  config.clear_javascripts! 
+  config.register_javascript 'application.js'
+  current_javascripts.reverse.each{|j| config.register_javascript j}
+ 
+ 
  
  
   config.register_javascript "ckeditor/ckeditor"
   #config.register_javascript 'ckeditor/config.js'
   #config.register_javascript 'ckeditor/ckeditor.js' 
   #config.register_javascript 'ckeditor/init.js'
+  config.register_javascript 'videos.js'
   config.register_stylesheet 'active_admin_ex.css'
   
- 
+  
   config.register_javascript "jwplayer/jwplayer"
   config.register_javascript "jwplayer/my"
+  
+  
   #config.view_factory.footer = Footer
 
   #config.site_title = "MMAGAP"
