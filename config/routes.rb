@@ -1,11 +1,18 @@
 Mmagap::Application.routes.draw do
+  
+  
+  root :to => 'videos#index'
+  
+  
+  #devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self) 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
 
   resources :student_teacher_profiles
   resources :comments
   resources :comment_likes
   resources :likes
-  
-  root :to => 'videos#index'
 
 
   #resources :videos  
@@ -28,7 +35,7 @@ Mmagap::Application.routes.draw do
 
   devise_scope :user do
     get 'register' , :to => 'devise/registrations#new', as: :register
-    get 'dashboard', :to => 'users#dashboard', as: :dashboard
+    get 'mydashboard', :to => 'users#dashboard', as: :mydashboard
     get 'user/following/:id', to: 'users#following', as: :following
     get 'user/followers/:id', to: 'users#followers', as: :followers
   end
@@ -129,8 +136,6 @@ Mmagap::Application.routes.draw do
   
   match 'cms_pages/show/:id' => 'cms_pages#show'
   
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self) 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  
     
 end

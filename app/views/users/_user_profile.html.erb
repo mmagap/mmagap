@@ -1,4 +1,4 @@
-<%#= debug user.videos %>
+<%= debug user %>
 
 <div>
 <div class="tabbable" > <!-- MAIN VIDEO WINDOW -->
@@ -31,18 +31,17 @@
             <div class='clear'></div>
             <div class='s-t-profile'>
               <%#= debug user.username %>
-              
               <% if user_signed_in? %>
-                
                 <% if user == current_user%>
-              
+                  <% if !user.student_teacher_profile.nil? %>
                   <%= link_to 'Student/Teacher profile' ,edit_student_teacher_profile_path(user.student_teacher_profile), class: 'btn' %>
+                  <%end%>
                 <% else %>
                   <%= link_to 'Student/Teacher profile' ,student_teacher_profile_path(user.student_teacher_profile), class: 'btn' %>
                 <% end %>
-              <% else %>
-                <%= link_to 'Student/Teacher profile' ,student_teacher_profile_path(user.student_teacher_profile), class: 'btn' %>
-              <% end %>
+                <% else %>
+                  <%= link_to 'Student/Teacher profile' ,student_teacher_profile_path(user.student_teacher_profile), class: 'btn' %>
+                <% end %>
             </div>
           </div>
           <div id="lft">

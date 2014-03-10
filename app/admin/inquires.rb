@@ -1,4 +1,5 @@
 ActiveAdmin.register Inquiry  do
+  
   filter :name
   filter :email
   filter :subject
