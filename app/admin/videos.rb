@@ -15,7 +15,7 @@ ActiveAdmin.register Video do
           column "Video" do |videolink|
 		    videolink.video_link
 		    videolink.lesson_upload
-		    if (videolink.video_link !=nil)
+		    if (videolink.video_link !='' || videolink.video_link !=nil)
 			      #video_tag('http//www.youtube.com/embed/CGyAaR2aWcA',:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>videolink.id)
 			      youtubeplayer(videolink.video_link, 'youtube').html_safe
 		    else
@@ -103,7 +103,7 @@ ActiveAdmin.register Video do
         
         row :video do
 	   	  
-          if (video.video_link !=nil)
+          if (video.video_link !='' || video.video_link !=nil)
 	     #video.video_link 	    
 	     youtubeplayer(video.video_link, 'youtube').html_safe
 	  else 
