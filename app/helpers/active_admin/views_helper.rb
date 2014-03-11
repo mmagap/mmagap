@@ -13,8 +13,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
             <div id="myElement">Loading the player...</div>
             <script type="text/javascript">
               jwplayer("myElement").setup({
-                  flashplayer: "/assets/admin/jwplayer/jwplayer.flash.swf",
-                  file: "#{youtube_url}",
+                  flashplayer: "/assets/jwplayer/jwplayer.flash.swf",
+                  file: "#{youtube_url}"
                   
               });
             </script>
@@ -31,8 +31,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
               <div id="myElement">Loading the player...</div>
               <script type="text/javascript">
                 jwplayer("myElement").setup({
-                    flashplayer: "/assets/admin/jwplayer/jwplayer.flash.swf",
-                    file: "#{youtube_url}",
+                    flashplayer: "/assets/jwplayer/jwplayer.flash.swf",
+                    file: "#{youtube_url}"
                     
                 });
               </script>
@@ -64,8 +64,8 @@ module ActiveAdmin::ViewsHelper #camelized file name
                 <div id="myElement">Loading the player...</div>
                 <script type="text/javascript">
                   jwplayer("myElement").setup({
-                      flashplayer: "/assets/admin/jwplayer/jwplayer.flash.swf",
-                      file: "#{v_url}",
+                      flashplayer: "/assets/jwplayer/jwplayer.flash.swf",
+                      file: "#{v_url}"
                       
                   });
                 </script>
