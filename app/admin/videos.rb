@@ -8,16 +8,16 @@ ActiveAdmin.register Video do
   filter :created_at
   filter :updated_at
   
-  index do |video|
+  index do 
 	  id_column
 	  column :title
 	  column :category
-          column "Video" do
-		    if (video.video_link !='')
+          column "Video" do |videolink|
+		    if (videolink.video_link !='')
 			      #video_tag('http//www.youtube.com/embed/CGyAaR2aWcA',:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>videolink.id)
-			      youtubeplayer(video.video_link, 'youtube').html_safe
+			      youtubeplayer(videolink.video_link, 'youtube').html_safe
 		    else
-			      myvideo(video.lesson_upload).html_safe	    
+			       myvideo(lesson_upload).html_safe	    
 		    end	    
 			
 		  #column :video_link
