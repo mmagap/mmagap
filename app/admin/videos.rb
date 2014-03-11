@@ -13,11 +13,13 @@ ActiveAdmin.register Video do
 	  column :title
 	  column :category
           column "Video" do |videolink|
+		    videolink.video_link
+		    videolink.lesson_upload
 		    if (videolink.video_link !='')
 			      #video_tag('http//www.youtube.com/embed/CGyAaR2aWcA',:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>videolink.id)
 			      youtubeplayer(videolink.video_link, 'youtube').html_safe
 		    else
-			       myvideo(videolink.lesson_upload).html_safe	    
+			      myvideo(videolink.lesson_upload).html_safe	    
 		    end	    
 			
 		  #column :video_link
