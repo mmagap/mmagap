@@ -100,7 +100,11 @@ ActiveAdmin.register Video do
         row :category
         row :price
         row :is_active
+        row :video_link
+        row :lesson_upload
+        
         row :video do
+	   	  
           if !video.video_link.nil?
 	     video.video_link 	    
 	     youtubeplayer(video.video_link, 'youtube').html_safe
