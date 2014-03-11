@@ -102,9 +102,11 @@ ActiveAdmin.register Video do
         row :is_active
         row :video do
           if !video.video_link.nil?
+	     video.video_link 	    
 	     youtubeplayer(video.video_link, 'youtube').html_safe
 	  elsif !video.lesson_upload.nil?
-	     youtubeplayer(video.lesson_upload, 'lesson').html_safe
+		    video.lesson_upload
+	     myvideo(video.lesson_upload).html_safe
 	  else
 		    
 	  end	    

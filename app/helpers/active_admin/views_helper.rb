@@ -54,9 +54,19 @@ module ActiveAdmin::ViewsHelper #camelized file name
     #end  
     #
     #s.html_safe
-  
-    
-  
+  end
+
+  def myvideo(v_url)
+          v =
+              <<-EOHTML
+                <div id="myElement">Loading the player...</div>
+                <script type="text/javascript">
+                  jwplayer("myElement").setup({
+                      file: "#{v_url}",
+                      
+                  });
+                </script>
+              EOHTML
   end
   
   
