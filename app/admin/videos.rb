@@ -12,20 +12,16 @@ ActiveAdmin.register Video do
 	  id_column
 	  column :title
 	  column :category
-          
-          
-          
-	  #  column "Video" do |videolink|
-	  #	    if !videolink.video_link.nil?
-	  #		  
-	  #	       #video_tag('http//www.youtube.com/embed/CGyAaR2aWcA',:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>videolink.id)
-	  #	       youtubeplayer(videolink.video_link, 'youtube').html_safe
-	  #	    else
-	  #				      
-	  #	    end	    
-	  #		  
-	  #	    #column :video_link
-	  #  end
+          column "Video" do
+		    if (video.video_link !='')
+			      #video_tag('http//www.youtube.com/embed/CGyAaR2aWcA',:controls=>true,:autobuffer=>true,:size=>"320X249", :id=>videolink.id)
+			      youtubeplayer(video.video_link, 'youtube').html_safe
+		    else
+			      myvideo(video.lesson_upload).html_safe	    
+		    end	    
+			
+		  #column :video_link
+	  end
 	  #   
 	  #  column "Lesson Upload" do |lessonupload|
 	  #	    if !lessonupload.lesson_upload.nil?
@@ -100,16 +96,16 @@ ActiveAdmin.register Video do
         row :category
         row :price
         row :is_active
-        row :video_link
-        row :lesson_upload
+        #row :video_link
+        #row :lesson_upload
         
         row :video do
 	   	  
           if (video.video_link !='')
-	     video.video_link 	    
+	     #video.video_link 	    
 	     youtubeplayer(video.video_link, 'youtube').html_safe
 	  else 
-	     video.lesson_upload
+	     #video.lesson_upload
 	     myvideo(video.lesson_upload).html_safe
 	  end	    
         end
